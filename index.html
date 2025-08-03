@@ -1,5 +1,6 @@
+<!-- Modernized version -->
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,20 +8,20 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <script src="https://unpkg.com/feather-icons"></script>
   <style>
-    /* Fix mobile menu to be fixed below header */
+    html {
+      scroll-behavior: smooth;
+    }
+
     #mobile-menu {
       position: fixed;
-      top: 48px; /* reduced from 60px */
+      top: 48px;
       left: 0;
       right: 0;
       z-index: 50;
       max-height: calc(100vh - 48px);
       overflow-y: auto;
-      background-color: #000000; /* black */
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
+      background: #0b0e1a;
+      padding: 1rem 1.5rem;
     }
 
     #mobile-menu.hidden {
@@ -28,102 +29,63 @@
     }
 
     body.menu-open #hero-section {
-      padding-top: 108px; /* reduced from 120px */
-      transition: padding-top 0.3s ease;
+      padding-top: 108px;
     }
 
-    /* For desktop: add padding-top so hero content is not overlapped by fixed navbar */
-    @media(min-width: 768px) {
+    @media (min-width: 768px) {
       #hero-section {
-        padding-top: 1.5rem; /* reduced from 2rem */
-        transition: padding-top 0.3s ease;
+        padding-top: 1.5rem;
       }
-    }
-
-    /* Smooth scroll for anchors */
-    html {
-      scroll-behavior: smooth;
     }
   </style>
 </head>
-<body class="bg-black text-white font-sans">
+<body class="bg-gradient-to-b from-[#0b0e1a] via-black to-[#020202] text-white font-sans">
 
   <!-- Navbar -->
-  <header
-    class="bg-black px-6 py-2 flex justify-between items-center fixed top-0 left-0 right-0 z-50"
-  >
+  <header class="bg-[#0b0e1a] px-6 py-3 flex justify-between items-center fixed top-0 left-0 right-0 z-50 shadow-md">
     <img src="assets/logo.png" alt="SafiScore® Logo" class="w-24 md:w-32" />
     <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
       <i data-feather="menu"></i>
     </button>
-    <nav
-      id="nav-menu"
-      class="hidden md:flex space-x-6 text-white"
-      role="navigation"
-      aria-label="Primary Navigation"
-    >
-      <a href="#about" class="hover:text-green-400 focus:text-green-400">About</a>
-      <a href="#features" class="hover:text-green-400 focus:text-green-400">Features</a>
-      <a href="#how" class="hover:text-green-400 focus:text-green-400">How it Works</a>
-      <a href="#resources" class="hover:text-green-400 focus:text-green-400">Resources</a>
-      <a href="#pricing" class="hover:text-green-400 focus:text-green-400">Pricing</a>
-      <a href="#blog" class="hover:text-green-400 focus:text-green-400">Blog</a>
-      <a href="#contact" class="hover:text-green-400 focus:text-green-400">Contact</a>
-      <a href="#api" class="bg-green-700 text-white px-4 py-2 rounded font-semibold">API Docs</a>
+    <nav id="nav-menu" class="hidden md:flex space-x-6 text-white" role="navigation" aria-label="Primary Navigation">
+      <a href="#about" class="hover:text-green-400 transition">About</a>
+      <a href="#features" class="hover:text-green-400 transition">Features</a>
+      <a href="#how" class="hover:text-green-400 transition">How it Works</a>
+      <a href="#resources" class="hover:text-green-400 transition">Resources</a>
+      <a href="#pricing" class="hover:text-green-400 transition">Pricing</a>
+      <a href="#blog" class="hover:text-green-400 transition">Blog</a>
+      <a href="#contact" class="hover:text-green-400 transition">Contact</a>
+      <a href="#api" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold transition">API Docs</a>
     </nav>
   </header>
 
   <!-- Mobile Nav -->
-  <div
-    id="mobile-menu"
-    class="md:hidden hidden bg-black text-white space-y-4"
-  >
-    <a href="#about" class="block hover:text-green-400 focus:text-green-400">About</a>
-    <a href="#features" class="block hover:text-green-400 focus:text-green-400">Features</a>
-    <a href="#how" class="block hover:text-green-400 focus:text-green-400">How it Works</a>
-    <a href="#resources" class="block hover:text-green-400 focus:text-green-400">Resources</a>
-    <a href="#pricing" class="block hover:text-green-400 focus:text-green-400">Pricing</a>
-    <a href="#blog" class="block hover:text-green-400 focus:text-green-400">Blog</a>
-    <a href="#contact" class="block hover:text-green-400 focus:text-green-400">Contact</a>
-    <a href="#api" class="block bg-green-700 text-white px-4 py-2 rounded font-semibold text-center">API Docs</a>
+  <div id="mobile-menu" class="md:hidden hidden text-white space-y-4">
+    <a href="#about" class="block hover:text-green-400 transition">About</a>
+    <a href="#features" class="block hover:text-green-400 transition">Features</a>
+    <a href="#how" class="block hover:text-green-400 transition">How it Works</a>
+    <a href="#resources" class="block hover:text-green-400 transition">Resources</a>
+    <a href="#pricing" class="block hover:text-green-400 transition">Pricing</a>
+    <a href="#blog" class="block hover:text-green-400 transition">Blog</a>
+    <a href="#contact" class="block hover:text-green-400 transition">Contact</a>
+    <a href="#api" class="block bg-green-600 text-white px-4 py-2 rounded font-semibold text-center transition hover:bg-green-700">API Docs</a>
   </div>
 
-  <!-- Hero Section -->
-  <section
-    id="hero-section"
-    class="bg-black text-white py-20 text-center px-4 mt-12 md:mt-16"
-  >
-    <h1 class="text-5xl font-bold mb-6">SafiScore® - Smarter Credit for Zimbabwe</h1>
-    <p class="text-xl mb-8 max-w-2xl mx-auto text-white/80">
-      Unlocking inclusive financial services through behavioral data, AI,
-      and mobile metadata. Built for the underserved.
-    </p>
+  <!-- Hero -->
+  <section id="hero-section" class="py-24 text-center px-4 mt-12 md:mt-16 bg-gradient-to-b from-[#0f172a] to-black">
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-white leading-tight">SafiScore®</h1>
+    <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-gray-300">Smarter credit scoring for Zimbabwe, built for inclusion using behavioral AI, mobile metadata, and financial insights.</p>
     <form class="max-w-md mx-auto" onsubmit="return false;">
-      <input
-        type="email"
-        placeholder="Enter your email"
-        class="w-full p-3 rounded text-black"
-        required
-        aria-label="Email address"
-      />
-      <button
-        class="bg-green-700 hover:bg-green-800 text-white mt-4 px-6 py-3 rounded font-semibold w-full"
-      >
-        Request a Demo
-      </button>
+      <input type="email" placeholder="Enter your email" class="w-full p-3 rounded text-black focus:outline-none" required />
+      <button class="bg-green-600 hover:bg-green-700 text-white mt-4 px-6 py-3 rounded font-semibold w-full transition">Request a Demo</button>
     </form>
   </section>
 
-  <!-- About Us -->
-  <section id="about" class="bg-green-900 py-20 px-6 text-white">
+  <!-- About -->
+  <section id="about" class="bg-[#112031] py-20 px-6 text-white">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-3xl font-bold mb-6">About SafiScore</h2>
-      <p class="text-lg leading-relaxed max-w-3xl mx-auto text-white/90">
-        SafiScore is an alternative credit scoring and data analytics platform
-        for Zimbabwe, leveraging mobile and web behavioral metadata. Our
-        AI-driven technology helps financial institutions reduce defaults,
-        expand approvals, and fight fraud—while including the underbanked.
-      </p>
+      <p class="text-lg leading-relaxed max-w-3xl mx-auto text-gray-300">We help Zimbabwe’s lenders, fintechs, and insurers unlock better credit decisions through AI-powered behavioral data, psychometrics, and mobile usage insights.</p>
     </div>
   </section>
 
@@ -131,56 +93,56 @@
   <section id="how" class="bg-black py-20 px-6 text-white">
     <div class="max-w-6xl mx-auto text-center">
       <h2 class="text-3xl font-bold mb-12">How It Works</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
         <div class="flex flex-col items-center">
-          <i data-feather="link" class="text-green-400 w-10 h-10 mb-4"></i>
+          <i data-feather="link" class="text-green-400 w-12 h-12 mb-4"></i>
           <h3 class="font-semibold text-xl mb-2">Connect</h3>
-          <p>Sync smartphone and web data for behavior analysis.</p>
+          <p class="text-gray-300">Integrate mobile/web metadata and behavioral signals.</p>
         </div>
         <div class="flex flex-col items-center">
-          <i data-feather="activity" class="text-green-400 w-10 h-10 mb-4"></i>
+          <i data-feather="activity" class="text-green-400 w-12 h-12 mb-4"></i>
           <h3 class="font-semibold text-xl mb-2">Analyze</h3>
-          <p>AI analyzes psychometric, social, and mobile metadata.</p>
+          <p class="text-gray-300">AI evaluates psychometric & mobile signals for risk insights.</p>
         </div>
         <div class="flex flex-col items-center">
-          <i data-feather="bar-chart-2" class="text-green-400 w-10 h-10 mb-4"></i>
+          <i data-feather="bar-chart-2" class="text-green-400 w-12 h-12 mb-4"></i>
           <h3 class="font-semibold text-xl mb-2">Score</h3>
-          <p>Receive SafiScore and tailored credit insights instantly.</p>
+          <p class="text-gray-300">Real-time scores delivered via API or dashboard.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Features -->
-  <section id="features" class="bg-white py-20 px-6 text-black">
+  <section id="features" class="bg-[#f8fafc] py-20 px-6 text-black">
     <div class="max-w-6xl mx-auto text-center">
       <h2 class="text-3xl font-bold mb-12">Platform Features</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
         <ul class="space-y-4">
           <li class="flex items-start">
-            <i data-feather="check-circle" class="text-green-700 mr-3"></i>
+            <i data-feather="check-circle" class="text-green-600 mr-3 mt-1"></i>
             Alternative credit scoring engine
           </li>
           <li class="flex items-start">
-            <i data-feather="shield" class="text-green-700 mr-3"></i>
+            <i data-feather="shield" class="text-green-600 mr-3 mt-1"></i>
             Built-in fraud detection
           </li>
           <li class="flex items-start">
-            <i data-feather="user-check" class="text-green-700 mr-3"></i>
+            <i data-feather="user-check" class="text-green-600 mr-3 mt-1"></i>
             Psychometric and behavioral models
           </li>
         </ul>
         <ul class="space-y-4">
           <li class="flex items-start">
-            <i data-feather="cpu" class="text-green-700 mr-3"></i>
+            <i data-feather="cpu" class="text-green-600 mr-3 mt-1"></i>
             Secure mobile data ingestion
           </li>
           <li class="flex items-start">
-            <i data-feather="git-merge" class="text-green-700 mr-3"></i>
+            <i data-feather="git-merge" class="text-green-600 mr-3 mt-1"></i>
             Open APIs for lenders and fintechs
           </li>
           <li class="flex items-start">
-            <i data-feather="sliders" class="text-green-700 mr-3"></i>
+            <i data-feather="sliders" class="text-green-600 mr-3 mt-1"></i>
             Custom risk and approval models
           </li>
         </ul>
@@ -192,33 +154,28 @@
   <section id="resources" class="bg-black py-20 px-6 text-white text-center">
     <div class="max-w-5xl mx-auto">
       <h2 class="text-3xl font-bold mb-6">Resources</h2>
-      <p class="mb-4 text-white/90">Explore demos, testimonials, and our latest insights.</p>
-      <a href="#" class="text-green-400 underline">Coming soon →</a>
+      <p class="mb-4 text-gray-300">Explore demos, case studies, and financial innovation insights.</p>
+      <a href="#" class="text-green-400 underline hover:text-green-300">Coming soon →</a>
     </div>
   </section>
 
   <!-- Pricing -->
-  <section id="pricing" class="bg-white py-20 px-6 text-black text-center">
+  <section id="pricing" class="bg-[#f9fafb] py-20 px-6 text-black text-center">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-3xl font-bold mb-6">Pricing</h2>
-      <p class="mb-6 text-gray-800">
-        Simple plans for growing lenders and partners. Custom enterprise
-        pricing available on request.
-      </p>
+      <p class="mb-6 text-gray-700">Flexible API pricing for innovators and institutions alike.</p>
       <div class="bg-green-100 rounded p-6">
-        <p class="text-2xl font-bold text-green-900">Free & API-based models</p>
-        <p class="text-green-800 mt-2">
-          Pay as you scale with credit scoring API usage.
-        </p>
+        <p class="text-2xl font-bold text-green-900">Free & Pay-as-you-go</p>
+        <p class="text-green-800 mt-2">No upfront cost. Scale securely with usage-based billing.</p>
       </div>
     </div>
   </section>
 
   <!-- Blog -->
-  <section id="blog" class="bg-black py-20 px-6 text-white text-center">
+  <section id="blog" class="bg-[#0f172a] py-20 px-6 text-white text-center">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-3xl font-bold mb-6">Blog & Thought Leadership</h2>
-      <p>Coming soon: case studies, local insights, and innovation stories.</p>
+      <p class="text-gray-300">Stories from Zimbabwean fintech, financial inclusion, and AI-driven credit.</p>
     </div>
   </section>
 
@@ -226,35 +183,12 @@
   <section id="contact" class="bg-green-900 py-20 px-6 text-white text-center">
     <div class="max-w-lg mx-auto">
       <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
-      <p class="mb-6 text-white/90">
-        We’d love to hear from you. Fill out the form and we’ll be in touch.
-      </p>
+      <p class="mb-6 text-white/90">We’d love to hear from you. Fill out the form and we’ll be in touch.</p>
       <form class="space-y-4 text-left" onsubmit="return false;">
-        <input
-          type="text"
-          placeholder="Your Name"
-          class="w-full p-3 rounded text-black"
-          required
-          aria-label="Your Name"
-        />
-        <input
-          type="email"
-          placeholder="Your Email"
-          class="w-full p-3 rounded text-black"
-          required
-          aria-label="Your Email"
-        />
-        <textarea
-          placeholder="Message"
-          class="w-full p-3 rounded text-black h-32"
-          required
-          aria-label="Message"
-        ></textarea>
-        <button
-          class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded font-semibold w-full"
-        >
-          Send Message
-        </button>
+        <input type="text" placeholder="Your Name" class="w-full p-3 rounded text-black" required />
+        <input type="email" placeholder="Your Email" class="w-full p-3 rounded text-black" required />
+        <textarea placeholder="Message" class="w-full p-3 rounded text-black h-32" required></textarea>
+        <button class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded font-semibold w-full">Send Message</button>
       </form>
     </div>
   </section>
@@ -263,31 +197,26 @@
   <section id="api" class="bg-black py-20 px-6 text-white text-center">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-3xl font-bold mb-6">API Documentation</h2>
-      <p>Integration guides and API references coming soon.</p>
+      <p>API guides and integration samples coming soon.</p>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black text-white text-sm text-center py-6">
-    <p>&copy; 2025 SafiScore® . All rights reserved.</p>
-    <p>Contact: info@safiscore.co.zw | Harare, Zimbabwe</p>
+  <footer class="bg-[#0b0e1a] text-white text-sm text-center py-6">
+    <p>&copy; 2025 SafiScore®. All rights reserved.</p>
+    <p>info@safiscore.co.zw | Harare, Zimbabwe</p>
   </footer>
 
   <!-- Scripts -->
   <script>
     feather.replace();
-
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
-
     menuToggle.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
       document.body.classList.toggle('menu-open');
     });
-
-    // Close mobile menu when a mobile menu link is clicked
-    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-    mobileMenuLinks.forEach(link => {
+    mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
         document.body.classList.remove('menu-open');
