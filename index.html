@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,213 +7,204 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <script src="https://unpkg.com/feather-icons"></script>
   <style>
-    /* Custom colors to evoke inclusivity, trust, simplicity */
-    :root {
-      --color-green-primary: #2F855A; /* Dark green - trust */
-      --color-green-light: #9AE6B4; /* Light green - inclusivity */
-      --color-gray-light: #F7FAFC; /* Light background */
-      --color-gray-dark: #1A202C; /* Dark text */
-    }
-
     body {
-      background-color: var(--color-gray-light);
-      color: var(--color-gray-dark);
       font-family: 'Inter', sans-serif;
-      line-height: 1.6;
+      background: #f9fafb;
+      color: #1f2937; /* cool dark slate */
     }
-
-    /* Navbar */
     header {
-      background-color: white;
-      box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
-      position: fixed;
-      width: 100%;
+      background: white;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+      position: sticky;
       top: 0;
-      left: 0;
-      z-index: 50;
-      padding: 1rem 1.5rem;
+      z-index: 100;
     }
-    header img {
-      filter: none;
-      width: 128px;
-      height: auto;
-    }
-
-    nav a {
-      color: var(--color-gray-dark);
+    a.api-btn {
+      background-color: #36b37e; /* splendi green */
+      color: white;
       font-weight: 600;
-      transition: color 0.2s ease;
-    }
-    nav a:hover,
-    nav a:focus {
-      color: var(--color-green-primary);
-      outline: none;
-    }
-    nav a.api-btn {
-      background: var(--color-green-primary);
-      color: white !important;
-      padding: 0.5rem 1.25rem;
+      padding: 0.5rem 1.5rem;
       border-radius: 9999px;
-      font-weight: 700;
       transition: background-color 0.3s ease;
     }
-    nav a.api-btn:hover {
-      background: #276749; /* Slightly darker green */
-    }
-
-    /* Mobile menu */
-    #mobile-menu {
-      background: white;
-      position: fixed;
-      top: 56px;
-      left: 0;
-      right: 0;
-      border-top: 1px solid #e2e8f0;
-      z-index: 45;
-      padding: 1rem 1.5rem;
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-    }
-    #mobile-menu a {
-      display: block;
-      margin-bottom: 1rem;
-      font-weight: 600;
-      color: var(--color-gray-dark);
-    }
-    #mobile-menu a.api-btn {
-      background: var(--color-green-primary);
-      color: white !important;
-      padding: 0.5rem 1.25rem;
-      border-radius: 9999px;
-      font-weight: 700;
-      text-align: center;
-    }
-    #mobile-menu a:hover,
-    #mobile-menu a:focus {
-      color: var(--color-green-primary);
+    a.api-btn:hover, a.api-btn:focus {
+      background-color: #2a9467;
       outline: none;
     }
-
+    button#menu-toggle {
+      display: none;
+    }
+    /* Mobile menu toggle */
+    @media (max-width: 768px) {
+      button#menu-toggle {
+        display: inline-flex;
+      }
+      nav#nav-menu {
+        display: none;
+      }
+      div#mobile-menu {
+        background: white;
+        padding: 1rem;
+        display: none;
+        position: absolute;
+        width: 100%;
+        top: 56px;
+        left: 0;
+        box-shadow: 0 4px 12px rgb(0 0 0 / 0.15);
+      }
+      div#mobile-menu.show {
+        display: block;
+      }
+      div#mobile-menu a {
+        display: block;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        color: #1f2937;
+      }
+      div#mobile-menu a.api-btn {
+        background-color: #36b37e;
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 9999px;
+        text-align: center;
+      }
+    }
     /* Hero */
     #hero-section {
-      margin-top: 56px;
-      padding: 6rem 1rem 4rem;
-      background: linear-gradient(135deg, var(--color-green-light), white);
-      text-align: center;
-      border-radius: 1rem;
+      background: white;
       max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 0 8px 16px rgb(47 133 90 / 0.25);
+      margin: 5rem auto 3rem;
+      padding: 3rem 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 24px rgb(54 179 126 / 0.2);
+      text-align: center;
     }
     #hero-section h1 {
       font-size: 3rem;
-      font-weight: 900;
+      font-weight: 800;
       margin-bottom: 1rem;
-      color: var(--color-green-primary);
+      color: #23643a;
     }
     #hero-section p {
-      font-size: 1.25rem;
+      font-size: 1.125rem;
       margin-bottom: 2rem;
-      color: #276749;
+      color: #374151;
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
     }
+    #hero-section form {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
     #hero-section form input[type="email"] {
-      border: 2px solid var(--color-green-primary);
-      padding: 1rem;
+      flex: 1 1 300px;
+      border: 2px solid #36b37e;
       border-radius: 9999px;
-      width: 100%;
-      max-width: 400px;
+      padding: 1rem 1.25rem;
       font-size: 1rem;
-      margin-bottom: 1rem;
-      outline-offset: 2px;
-      transition: border-color 0.2s ease;
+      outline-offset: 3px;
+      transition: border-color 0.3s ease;
     }
     #hero-section form input[type="email"]:focus {
-      border-color: #276749;
-      box-shadow: 0 0 8px var(--color-green-primary);
+      border-color: #2a9467;
+      box-shadow: 0 0 8px #36b37e;
     }
     #hero-section form button {
-      background-color: var(--color-green-primary);
-      padding: 1rem 2rem;
+      background-color: #36b37e;
+      color: white;
       font-weight: 700;
+      padding: 1rem 2rem;
       font-size: 1.125rem;
       border-radius: 9999px;
-      color: white;
-      width: 100%;
-      max-width: 400px;
       transition: background-color 0.3s ease;
+      cursor: pointer;
+      flex-shrink: 0;
     }
     #hero-section form button:hover,
     #hero-section form button:focus {
-      background-color: #276749;
+      background-color: #2a9467;
       outline: none;
     }
 
-    /* Section headings */
+    /* Section Titles */
     section h2 {
-      font-weight: 800;
+      font-weight: 700;
       font-size: 2rem;
       margin-bottom: 1.5rem;
-      color: var(--color-green-primary);
+      color: #23643a;
       text-align: center;
     }
-
-    /* About & How sections */
-    #about, #how {
+    section {
       background: white;
-      padding: 4rem 1.5rem;
       max-width: 900px;
       margin: 3rem auto;
+      padding: 2.5rem 2rem;
       border-radius: 1rem;
-      box-shadow: 0 5px 15px rgb(0 0 0 / 0.05);
-      color: var(--color-gray-dark);
+      box-shadow: 0 6px 18px rgb(54 179 126 / 0.1);
     }
 
+    /* How It Works Grid */
     #how .grid {
-      margin-top: 2rem;
       display: flex;
-      justify-content: space-between;
       gap: 2rem;
+      justify-content: space-between;
       flex-wrap: wrap;
     }
     #how .grid > div {
       flex: 1 1 30%;
-      background: var(--color-green-light);
       border-radius: 1rem;
       padding: 2rem 1.5rem;
-      box-shadow: 0 5px 10px rgb(0 0 0 / 0.05);
-      color: var(--color-green-primary);
+      box-shadow: 0 4px 12px rgb(54 179 126 / 0.15);
+      text-align: center;
+      transition: transform 0.3s ease;
+      cursor: default;
+      background: #f0fdf9;
+      color: #23643a;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      transition: background-color 0.3s ease;
+      gap: 0.75rem;
     }
     #how .grid > div:hover {
-      background-color: #81E6D9; /* teal-ish green */
-      color: #1C4532;
-      cursor: default;
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgb(54 179 126 / 0.3);
     }
     #how .grid i {
-      margin-bottom: 1rem;
+      stroke-width: 2;
+      width: 44px;
+      height: 44px;
     }
     #how .grid h3 {
       font-weight: 700;
       font-size: 1.25rem;
-      margin-bottom: 0.5rem;
+      margin: 0;
     }
 
-    /* Features */
-    #features {
-      background: var(--color-gray-light);
-      padding: 4rem 1.5rem;
-      border-radius: 1rem;
-      max-width: 900px;
-      margin: 3rem auto;
-      color: var(--color-gray-dark);
-      box-shadow: 0 5px 15px rgb(0 0 0 / 0.03);
+    /* Features list */
+    #features ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #features ul li {
+      padding-left: 1.5rem;
+      position: relative;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: #23643a;
+    }
+    #features ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      width: 1rem;
+      height: 1rem;
+      background: #36b37e;
+      border-radius: 9999px;
     }
     #features .grid {
       display: flex;
@@ -223,83 +214,54 @@
     }
     #features ul {
       flex: 1 1 45%;
-      list-style: none;
-      padding-left: 0;
-    }
-    #features li {
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      font-weight: 600;
-      color: var(--color-green-primary);
-    }
-    #features li i {
-      margin-right: 0.75rem;
-      color: var(--color-green-primary);
-      min-width: 24px;
-      min-height: 24px;
     }
 
-    /* Resources, Blog, Contact, API */
-    section#resources, section#blog, section#contact, section#api {
-      max-width: 900px;
-      margin: 3rem auto;
-      background: white;
-      border-radius: 1rem;
-      padding: 3rem 2rem;
-      color: var(--color-gray-dark);
-      box-shadow: 0 5px 15px rgb(0 0 0 / 0.05);
-      text-align: center;
-    }
+    /* Contact form */
     #contact form input,
     #contact form textarea {
       width: 100%;
-      padding: 1rem;
-      border: 2px solid var(--color-green-primary);
+      border: 2px solid #36b37e;
       border-radius: 0.75rem;
-      margin-bottom: 1rem;
+      padding: 1rem;
       font-size: 1rem;
+      margin-bottom: 1rem;
       resize: vertical;
-      color: var(--color-gray-dark);
       font-weight: 500;
+      color: #1f2937;
+      transition: border-color 0.3s ease;
     }
     #contact form input:focus,
     #contact form textarea:focus {
+      border-color: #2a9467;
       outline: none;
-      border-color: #276749;
-      box-shadow: 0 0 8px var(--color-green-primary);
+      box-shadow: 0 0 8px #36b37e;
     }
     #contact form button {
-      background-color: var(--color-green-primary);
+      background-color: #36b37e;
       color: white;
-      padding: 1rem 2rem;
       font-weight: 700;
-      border-radius: 9999px;
+      padding: 1rem 2rem;
       font-size: 1.125rem;
+      border-radius: 9999px;
       width: 100%;
       max-width: 320px;
-      transition: background-color 0.3s ease;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
     #contact form button:hover,
     #contact form button:focus {
-      background-color: #276749;
+      background-color: #2a9467;
       outline: none;
     }
 
     /* Footer */
     footer {
-      background: white;
-      color: var(--color-gray-dark);
-      padding: 1.5rem 1rem;
-      font-size: 0.875rem;
       text-align: center;
-      border-top: 1px solid #e2e8f0;
-      margin-top: 4rem;
+      font-size: 0.875rem;
+      color: #4b5563;
+      padding: 2rem 1rem;
       max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      border-radius: 0 0 1rem 1rem;
+      margin: 3rem auto 1rem;
     }
 
     /* Responsive */
@@ -316,36 +278,28 @@
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header
-    class="flex justify-between items-center"
-  >
-    <img src="assets/logo.png" alt="SafiScore® Logo" />
-    <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none" aria-label="Toggle menu">
-      <i data-feather="menu" stroke="#2F855A"></i>
+  <!-- Header -->
+  <header class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+    <a href="#hero-section" aria-label="SafiScore Logo">
+      <img src="assets/logo.png" alt="SafiScore® Logo" class="w-32" />
+    </a>
+    <button id="menu-toggle" aria-label="Toggle menu" class="md:hidden text-gray-700 focus:outline-none">
+      <i data-feather="menu" stroke="#36b37e"></i>
     </button>
-    <nav
-      id="nav-menu"
-      class="hidden md:flex space-x-8"
-      role="navigation"
-      aria-label="Primary Navigation"
-    >
-      <a href="#about" tabindex="0">About</a>
-      <a href="#features" tabindex="0">Features</a>
-      <a href="#how" tabindex="0">How it Works</a>
-      <a href="#resources" tabindex="0">Resources</a>
-      <a href="#pricing" tabindex="0">Pricing</a>
-      <a href="#blog" tabindex="0">Blog</a>
-      <a href="#contact" tabindex="0">Contact</a>
-      <a href="#api" class="api-btn" tabindex="0">API Docs</a>
+    <nav id="nav-menu" class="hidden md:flex space-x-10 text-lg font-semibold text-gray-800" role="navigation" aria-label="Primary Navigation">
+      <a href="#about" class="hover:text-green-600 focus:text-green-600 focus:outline-none">About</a>
+      <a href="#features" class="hover:text-green-600 focus:text-green-600 focus:outline-none">Features</a>
+      <a href="#how" class="hover:text-green-600 focus:text-green-600 focus:outline-none">How it Works</a>
+      <a href="#resources" class="hover:text-green-600 focus:text-green-600 focus:outline-none">Resources</a>
+      <a href="#pricing" class="hover:text-green-600 focus:text-green-600 focus:outline-none">Pricing</a>
+      <a href="#blog" class="hover:text-green-600 focus:text-green-600 focus:outline-none">Blog</a>
+      <a href="#contact" class="hover:text-green-600 focus:text-green-600 focus:outline-none">Contact</a>
+      <a href="#api" class="api-btn">API Docs</a>
     </nav>
   </header>
 
-  <!-- Mobile Nav -->
-  <div
-    id="mobile-menu"
-    class="md:hidden hidden"
-  >
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden" role="navigation" aria-label="Mobile Navigation">
     <a href="#about">About</a>
     <a href="#features">Features</a>
     <a href="#how">How it Works</a>
@@ -357,112 +311,100 @@
   </div>
 
   <!-- Hero Section -->
-  <section
-    id="hero-section"
-  >
-    <h1>SafiScore® - Smarter Credit for Zimbabwe</h1>
+  <section id="hero-section" role="region" aria-labelledby="hero-heading" tabindex="0">
+    <h1 id="hero-heading">
+      Smarter Credit for Zimbabwe with SafiScore<sup>®</sup>
+    </h1>
     <p>
-      Unlocking inclusive financial services through behavioral data, AI,
-      and mobile metadata. Built for the underserved.
+      Unlock the power of AI-driven credit scoring tailored for Zimbabwe's unique financial landscape. Increase access, reduce risk, and empower the underserved.
     </p>
-    <form onsubmit="return false;">
+    <form aria-label="Join waitlist form">
       <input
         type="email"
+        name="email"
         placeholder="Enter your email"
         required
+        aria-required="true"
         aria-label="Email address"
       />
-      <button
-        type="submit"
-      >
-        Request a Demo
-      </button>
+      <button type="submit">Join Waitlist</button>
     </form>
   </section>
 
-  <!-- About Us -->
-  <section id="about">
-    <h2>About SafiScore</h2>
+  <!-- About -->
+  <section id="about" role="region" aria-labelledby="about-heading">
+    <h2 id="about-heading">About SafiScore®</h2>
     <p>
-      SafiScore is an alternative credit scoring and data analytics platform
-      for Zimbabwe, leveraging mobile and web behavioral metadata. Our
-      AI-driven technology helps financial institutions reduce defaults,
-      expand approvals, and fight fraud—while including the underbanked.
+      SafiScore® uses cutting-edge AI technology to deliver more accurate credit scores and improve financial inclusion in Zimbabwe.
     </p>
   </section>
 
-  <!-- How It Works -->
-  <section id="how">
-    <h2>How It Works</h2>
+  <!-- Features -->
+  <section id="features" role="region" aria-labelledby="features-heading">
+    <h2 id="features-heading">Key Features</h2>
     <div class="grid">
-      <div>
-        <i data-feather="link" stroke="currentColor" width="40" height="40"></i>
-        <h3>Connect</h3>
-        <p>Sync smartphone and web data for behavior analysis.</p>
-      </div>
-      <div>
-        <i data-feather="activity" stroke="currentColor" width="40" height="40"></i>
-        <h3>Analyze</h3>
-        <p>AI analyzes psychometric, social, and mobile metadata.</p>
-      </div>
-      <div>
-        <i data-feather="bar-chart-2" stroke="currentColor" width="40" height="40"></i>
-        <h3>Score</h3>
-        <p>Receive SafiScore and tailored credit insights instantly.</p>
-      </div>
+      <ul>
+        <li>AI-driven credit scoring tailored for Zimbabwe.</li>
+        <li>Easy API integration for developers.</li>
+        <li>Real-time risk analysis and alerts.</li>
+      </ul>
+      <ul>
+        <li>Customizable score thresholds.</li>
+        <li>Inclusive and transparent algorithms.</li>
+        <li>Detailed reporting and dashboards.</li>
+      </ul>
     </div>
   </section>
 
-  <!-- Features -->
-  <section id="features">
-    <h2>Platform Features</h2>
+  <!-- How It Works -->
+  <section id="how" role="region" aria-labelledby="how-heading">
+    <h2 id="how-heading">How It Works</h2>
     <div class="grid">
-      <ul>
-        <li><i data-feather="check-circle"></i> Alternative credit scoring engine</li>
-        <li><i data-feather="shield"></i> Built-in fraud detection</li>
-        <li><i data-feather="user-check"></i> Psychometric and behavioral models</li>
-      </ul>
-      <ul>
-        <li><i data-feather="cpu"></i> Secure mobile data ingestion</li>
-        <li><i data-feather="git-merge"></i> Open APIs for lenders and fintechs</li>
-        <li><i data-feather="sliders"></i> Custom risk and approval models</li>
-      </ul>
+      <div>
+        <i data-feather="cpu"></i>
+        <h3>Advanced AI Models</h3>
+        <p>Leverages machine learning to analyze diverse data sources.</p>
+      </div>
+      <div>
+        <i data-feather="database"></i>
+        <h3>Comprehensive Data</h3>
+        <p>Utilizes alternative and traditional financial data.</p>
+      </div>
+      <div>
+        <i data-feather="shield"></i>
+        <h3>Trusted Decisions</h3>
+        <p>Helps lenders reduce risk while expanding credit access.</p>
+      </div>
     </div>
   </section>
 
   <!-- Resources -->
-  <section id="resources">
-    <h2>Resources</h2>
-    <p>Explore demos, testimonials, and our latest insights.</p>
-    <a href="#" style="color: var(--color-green-primary); font-weight: 600;">Coming soon →</a>
+  <section id="resources" role="region" aria-labelledby="resources-heading">
+    <h2 id="resources-heading">Resources</h2>
+    <p>
+      Explore our blog, case studies, and developer guides to get the most from SafiScore®.
+    </p>
   </section>
 
   <!-- Pricing -->
-  <section id="pricing" style="max-width: 600px; margin: 3rem auto; text-align: center;">
-    <h2>Pricing</h2>
-    <p style="margin-bottom: 1.5rem;">
-      Simple plans for growing lenders and partners. Custom enterprise
-      pricing available on request.
+  <section id="pricing" role="region" aria-labelledby="pricing-heading">
+    <h2 id="pricing-heading">Pricing</h2>
+    <p>
+      Flexible pricing plans designed to fit businesses of all sizes.
     </p>
-    <div style="background: var(--color-green-light); border-radius: 1rem; padding: 1.5rem; color: var(--color-green-primary); font-weight: 700;">
-      Free & API-based models<br />
-      <span style="font-weight: 500; font-size: 1rem;">Pay as you scale with credit scoring API usage.</span>
-    </div>
   </section>
 
   <!-- Blog -->
-  <section id="blog" style="max-width: 600px; margin: 3rem auto; text-align: center;">
-    <h2>Blog & Thought Leadership</h2>
-    <p>Coming soon: case studies, local insights, and innovation stories.</p>
+  <section id="blog" role="region" aria-labelledby="blog-heading">
+    <h2 id="blog-heading">Latest from Our Blog</h2>
+    <p>Coming soon!</p>
   </section>
 
   <!-- Contact -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>
-      Have questions? Want to learn more? Reach out to our team below.
-    </p>
-    <form>
+  <section id="contact" role="region" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Contact Us</h2>
+    <p>Have questions? Want to learn more? Reach out to our team below.</p>
+    <form aria-label="Contact form">
       <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name" />
       <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email" />
       <textarea name="message" rows="5" placeholder="Your Message" required aria-label="Your Message"></textarea>
@@ -471,37 +413,27 @@
   </section>
 
   <!-- API Docs -->
-  <section id="api" style="text-align: center;">
-    <h2>API Documentation</h2>
+  <section id="api" role="region" aria-labelledby="api-heading" style="text-align: center;">
+    <h2 id="api-heading">API Documentation</h2>
     <p>
-      Seamlessly integrate SafiScore into your applications with our
-      comprehensive API docs.
+      Seamlessly integrate SafiScore® into your applications with our comprehensive API docs.
     </p>
-    <a href="#" class="api-btn" style="display: inline-block; margin-top: 1rem; max-width: 200px;">Explore API</a>
+    <a href="#" class="api-btn" style="max-width: 200px;">Explore API</a>
   </section>
 
   <!-- Footer -->
   <footer>
-    &copy; 2025 SafiScore. All rights reserved.
+    &copy; 2025 SafiScore®. All rights reserved.
   </footer>
 
   <script>
     feather.replace();
 
-    // Mobile menu toggle
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
-    const navMenu = document.getElementById('nav-menu');
 
     menuToggle.addEventListener('click', () => {
-      const isHidden = mobileMenu.classList.contains('hidden');
-      if (isHidden) {
-        mobileMenu.classList.remove('hidden');
-        navMenu.classList.add('hidden');
-      } else {
-        mobileMenu.classList.add('hidden');
-        navMenu.classList.remove('hidden');
-      }
+      mobileMenu.classList.toggle('show');
     });
   </script>
 </body>
