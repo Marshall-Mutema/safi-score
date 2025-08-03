@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SafiScore | Smarter Credit for Zimbabwe</title>
+  <title>SafiScore® | Smarter Credit for Zimbabwe</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <script src="https://unpkg.com/feather-icons"></script>
   <style>
     /* Fix mobile menu to be fixed below header */
     #mobile-menu {
       position: fixed;
-      top: 60px; /* height of header */
+      top: 48px; /* reduced from 60px */
       left: 0;
       right: 0;
       z-index: 50;
-      max-height: calc(100vh - 60px);
+      max-height: calc(100vh - 48px);
       overflow-y: auto;
       background-color: #000000; /* black */
       padding-left: 1.5rem;
@@ -28,14 +28,14 @@
     }
 
     body.menu-open #hero-section {
-      padding-top: 120px; /* enough for fixed mobile menu */
+      padding-top: 108px; /* reduced from 120px */
       transition: padding-top 0.3s ease;
     }
 
     /* For desktop: add padding-top so hero content is not overlapped by fixed navbar */
     @media(min-width: 768px) {
       #hero-section {
-        padding-top: 2rem; /* 40px header height */
+        padding-top: 1.5rem; /* reduced from 2rem */
         transition: padding-top 0.3s ease;
       }
     }
@@ -50,9 +50,9 @@
 
   <!-- Navbar -->
   <header
-    class="bg-black px-6 py-4 flex justify-between items-center fixed top-0 left-0 right-0 z-50"
+    class="bg-black px-6 py-2 flex justify-between items-center fixed top-0 left-0 right-0 z-50"
   >
-    <img src="assets/logo.png" alt="SafiScore Logo" class="w-32 md:w-40" />
+    <img src="assets/logo.png" alt="SafiScore® Logo" class="w-24 md:w-32" />
     <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
       <i data-feather="menu"></i>
     </button>
@@ -91,9 +91,9 @@
   <!-- Hero Section -->
   <section
     id="hero-section"
-    class="bg-black text-white py-20 text-center px-4 mt-16 md:mt-20"
+    class="bg-black text-white py-20 text-center px-4 mt-12 md:mt-16"
   >
-    <h1 class="text-5xl font-bold mb-6">Smarter Credit for Zimbabwe</h1>
+    <h1 class="text-5xl font-bold mb-6">SafiScore® - Smarter Credit for Zimbabwe</h1>
     <p class="text-xl mb-8 max-w-2xl mx-auto text-white/80">
       Unlocking inclusive financial services through behavioral data, AI,
       and mobile metadata. Built for the underserved.
@@ -269,7 +269,7 @@
 
   <!-- Footer -->
   <footer class="bg-black text-white text-sm text-center py-6">
-    <p>&copy; 2025 SafiScore. All rights reserved.</p>
+    <p>&copy; 2025 SafiScore® . All rights reserved.</p>
     <p>Contact: info@safiscore.co.zw | Harare, Zimbabwe</p>
   </footer>
 
@@ -296,4 +296,3 @@
   </script>
 </body>
 </html>
-
