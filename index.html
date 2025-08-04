@@ -1,49 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SafiScore® | Smarter Credit for Zimbabwe</title>
   <!-- Tailwind CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-  <!-- Feather Icons CDN, deferred for performance -->
+  <!-- Feather Icons CDN -->
   <script src="https://unpkg.com/feather-icons" defer></script>
-
   <style>
-    /* Navbar base styles */
+    /* Static compact navbar */
     header {
-      transition: padding 0.25s ease, background-color 0.3s ease, box-shadow 0.3s ease;
       background-color: #000;
-      padding-top: 1rem;  /* md:py-4 */
-      padding-bottom: 1rem;
+      padding: 0.5rem 1.5rem; /* Compact vertical + horizontal padding */
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    /* Shrunk navbar */
-    header.navbar-shrink {
-      padding-top: 0.5rem !important;  /* py-2 */
-      padding-bottom: 0.5rem !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    }
-    /* Logo base size */
     .navbar-logo {
-      transition: width 0.25s ease;
-      width: 128px; /* md:w-32 */
+      width: 96px; /* Compact size */
+      transition: none;
     }
-    /* Logo shrunk */
-    header.navbar-shrink .navbar-logo {
-      width: 96px !important;  /* w-24 */
+    nav#nav-menu {
+      gap: 1rem;
+      display: flex;
+      font-size: 0.875rem; /* text-sm ~14px */
+      font-weight: 500;
     }
-    /* Mobile logo size override */
-    @media (max-width: 767px) {
-      header {
-        padding-top: 0.5rem !important;  /* py-2 */
-        padding-bottom: 0.5rem !important;
-      }
-      .navbar-logo {
-        width: 96px !important; /* w-24 */
-      }
+    nav#nav-menu a {
+      padding: 0.25rem 0.5rem;
+      line-height: 1.25rem;
+      transition: color 0.2s ease;
+    }
+    nav#nav-menu a:hover,
+    nav#nav-menu a:focus {
+      color: #22c55e; /* green-400 */
+      outline: none;
+    }
+    nav#nav-menu a.bg-green-700 {
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
 
-    /* Mobile menu styles */
+    /* Mobile nav */
     #mobile-menu {
       position: fixed;
       top: 48px;
@@ -52,31 +56,102 @@
       z-index: 50;
       max-height: calc(100vh - 48px);
       overflow-y: auto;
-      background-color: #000000;
+      background-color: #000;
       padding: 1rem 1.5rem;
     }
     #mobile-menu.hidden {
       display: none;
     }
 
-    /* Hero padding to avoid navbar overlap */
+    /* Hero spacing for navbar */
     #hero-section {
-      padding-top: 80px;
-      transition: padding-top 0.3s ease;
+      padding-top: 96px; /* enough to clear navbar */
+      padding-bottom: 4rem;
+      background-color: #000;
+      color: white;
+      text-align: center;
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
 
-    /* Responsive hero padding */
-    @media(min-width: 768px) {
-      #hero-section {
-        padding-top: 80px;
+    /* Hero text sizing */
+    #hero-title {
+      font-size: 2rem; /* text-3xl */
+      font-weight: 700;
+      max-width: 540px;
+      margin: 0 auto 1.5rem auto;
+      line-height: 1.2;
+    }
+    #hero-description {
+      font-size: 1.125rem; /* text-lg */
+      max-width: 600px;
+      margin: 0 auto 2rem auto;
+      color: rgba(255 255 255 / 0.8);
+      line-height: 1.5;
+    }
+    /* CTA buttons container */
+    #hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    /* Individual CTA styles */
+    .cta-btn {
+      flex: 1 1 280px;
+      padding: 1rem 1.5rem;
+      font-weight: 600;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      user-select: none;
+      display: inline-block;
+    }
+    .cta-lender {
+      background-color: #047857; /* green-700 */
+      color: white;
+    }
+    .cta-lender:hover,
+    .cta-lender:focus {
+      background-color: #065f46; /* green-800 */
+      outline: none;
+    }
+    .cta-user {
+      background-color: transparent;
+      color: #22c55e; /* brighter green */
+      border: 2px solid #22c55e;
+    }
+    .cta-user:hover,
+    .cta-user:focus {
+      background-color: #22c55e;
+      color: #000;
+      border-color: #16a34a;
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (min-width: 768px) {
+      #hero-title {
+        font-size: 2.5rem; /* text-4xl */
+        max-width: 720px;
+      }
+      #hero-description {
+        font-size: 1.25rem; /* text-xl */
+        max-width: 720px;
+      }
+      #hero-ctas {
+        gap: 1.5rem;
+      }
+      .cta-btn {
+        flex: 1 1 48%;
       }
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Visually hidden for accessibility */
+    /* Accessibility */
     .sr-only {
       position: absolute;
       width: 1px;
@@ -84,7 +159,7 @@
       padding: 0;
       margin: -1px;
       overflow: hidden;
-      clip: rect(0,0,0,0);
+      clip: rect(0 0 0 0);
       border: 0;
     }
     .focus\:not-sr-only:focus {
@@ -101,7 +176,6 @@
       left: 0;
       top: 0;
     }
-    /* Focus outlines */
     a:focus, button:focus, input:focus, textarea:focus {
       outline: 2px solid #22d3ee;
       outline-offset: 2px;
@@ -111,68 +185,64 @@
 <body class="bg-black text-white font-sans">
 
   <!-- Skip link for accessibility -->
-  <a href="#main-content" class="sr-only focus:not-sr-only absolute left-0 top-0 px-4 py-2 z-50">
-    Skip to main content
-  </a>
+  <a href="#main-content" class="sr-only focus:not-sr-only absolute left-0 top-0 px-4 py-2 z-50">Skip to main content</a>
 
-<!-- Navbar -->
-<header class="fixed top-0 left-0 right-0 z-50 px-6 flex justify-between items-center" role="banner">
-  <a href="#hero-section" aria-label="Home">
-    <img src="assets/logo.png" alt="SafiScore company logo" class="navbar-logo" />
-  </a>
-  <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu" type="button">
-    <i data-feather="menu"></i>
-  </button>
-  <nav id="nav-menu" class="hidden md:flex space-x-4 text-white text-sm" aria-label="Main site navigation">
-    <a href="#about" class="hover:text-green-400 focus:text-green-400 px-1 py-1">About</a>
-    <a href="#features" class="hover:text-green-400 focus:text-green-400 px-1 py-1">Features</a>
-    <a href="#how" class="hover:text-green-400 focus:text-green-400 px-1 py-1">How it Works</a>
-    <a href="#resources" class="hover:text-green-400 focus:text-green-400 px-1 py-1">Resources</a>
-    <a href="#pricing" class="hover:text-green-400 focus:text-green-400 px-1 py-1">Pricing</a>
-    <a href="#blog" class="hover:text-green-400 focus:text-green-400 px-1 py-1">Blog</a>
-    <a href="#contact" class="hover:text-green-400 focus:text-green-400 px-1 py-1">Contact</a>
-    <a href="#api" class="bg-green-700 text-white px-3 py-1 rounded font-semibold text-sm">API Docs</a>
+  <!-- Navbar -->
+  <header role="banner" aria-label="Primary navigation">
+    <a href="#hero-section" aria-label="Home">
+      <img src="assets/logo.png" alt="SafiScore company logo" class="navbar-logo" />
+    </a>
+    <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu" type="button">
+      <i data-feather="menu"></i>
+    </button>
+    <nav id="nav-menu" class="hidden md:flex" aria-label="Main site navigation">
+      <a href="#about" class="hover:text-green-400 focus:text-green-400">About</a>
+      <a href="#features" class="hover:text-green-400 focus:text-green-400">Features</a>
+      <a href="#how" class="hover:text-green-400 focus:text-green-400">How it Works</a>
+      <a href="#resources" class="hover:text-green-400 focus:text-green-400">Resources</a>
+      <a href="#pricing" class="hover:text-green-400 focus:text-green-400">Pricing</a>
+      <a href="#blog" class="hover:text-green-400 focus:text-green-400">Blog</a>
+      <a href="#contact" class="hover:text-green-400 focus:text-green-400">Contact</a>
+      <a href="#api" class="bg-green-700 text-white px-4 py-2 rounded font-semibold ml-4">API Docs</a>
+    </nav>
+  </header>
+
+  <!-- Mobile Nav -->
+  <nav
+    id="mobile-menu"
+    class="md:hidden hidden text-white space-y-4"
+    aria-label="Mobile navigation"
+  >
+    <a href="#about" class="block hover:text-green-400">About</a>
+    <a href="#features" class="block hover:text-green-400">Features</a>
+    <a href="#how" class="block hover:text-green-400">How it Works</a>
+    <a href="#resources" class="block hover:text-green-400">Resources</a>
+    <a href="#pricing" class="block hover:text-green-400">Pricing</a>
+    <a href="#blog" class="block hover:text-green-400">Blog</a>
+    <a href="#contact" class="block hover:text-green-400">Contact</a>
+    <a href="#api" class="block bg-green-700 text-white px-4 py-2 rounded font-semibold text-center">API Docs</a>
   </nav>
-</header>
-
-<!-- Mobile Nav -->
-<nav id="mobile-menu" class="md:hidden hidden text-white space-y-3 text-sm" aria-label="Mobile navigation">
-  <a href="#about" class="block hover:text-green-400 px-1 py-1">About</a>
-  <a href="#features" class="block hover:text-green-400 px-1 py-1">Features</a>
-  <a href="#how" class="block hover:text-green-400 px-1 py-1">How it Works</a>
-  <a href="#resources" class="block hover:text-green-400 px-1 py-1">Resources</a>
-  <a href="#pricing" class="block hover:text-green-400 px-1 py-1">Pricing</a>
-  <a href="#blog" class="block hover:text-green-400 px-1 py-1">Blog</a>
-  <a href="#contact" class="block hover:text-green-400 px-1 py-1">Contact</a>
-  <a href="#api" class="block bg-green-700 text-white px-4 py-2 rounded font-semibold text-center text-sm">API Docs</a>
-</nav>
 
   <!-- Main Content -->
   <main id="main-content">
 
-<!-- Hero Section -->
-<section id="hero-section" class="bg-black text-white py-20 text-center px-4" aria-labelledby="hero-title" style="padding-top: 80px;">
-  <h1 id="hero-title" class="text-4xl md:text-5xl font-bold mb-6 max-w-4xl mx-auto leading-tight">
-    Unlock Affordable Credit for Zimbabwe’s Economically Active, Without Bank History
-  </h1>
-  <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-white/80 leading-relaxed">
-    Millions of Zimbabweans contribute to the economy but are denied fair credit due to lack of traditional banking data. SafiScore leverages mobile behavior and AI to deliver smarter, inclusive credit scores — empowering you to access financing at fair rates.
-  </p>
-  <form class="max-w-md mx-auto" onsubmit="return false;" aria-label="Request a demo">
-    <label for="demo-email" class="sr-only">Your email</label>
-    <input 
-      type="email" 
-      id="demo-email" 
-      placeholder="Enter your email" 
-      class="w-full p-3 rounded text-black" 
-      required
-      autocomplete="email"
-    />
-    <button class="bg-green-700 hover:bg-green-800 text-white mt-4 px-6 py-3 rounded font-semibold w-full text-sm md:text-base" type="submit">
-      Get Your Smarter Score
-    </button>
-  </form>
-</section>
+    <!-- Hero Section -->
+    <section id="hero-section" aria-labelledby="hero-title" role="region">
+      <h1 id="hero-title">
+        Credit Where It’s Due: Empowering Zimbabwe’s Economy
+      </h1>
+      <p id="hero-description">
+        SafiScore enables lenders to integrate smarter credit scoring without reliance on traditional bank data. Consumers get fast access to trustworthy credit scores — unlocking affordable finance for all economically active Zimbabweans.
+      </p>
+      <div id="hero-ctas">
+        <a href="#api" class="cta-btn cta-lender" role="button" tabindex="0" aria-label="Lender integration API">
+          Lender? Integrate Our API →
+        </a>
+        <a href="#contact" class="cta-btn cta-user" role="button" tabindex="0" aria-label="Request SafiScore for yourself">
+          Need a SafiScore? Get Yours →
+        </a>
+      </div>
+    </section>
 
     <!-- About -->
     <section id="about" class="bg-green-900 py-20 px-6 text-white" aria-labelledby="about-title">
@@ -363,45 +433,29 @@
     <p>Contact: <a href="mailto:info@safiscore.co.zw" class="underline hover:text-green-400">info@safiscore.co.zw</a> | Harare, Zimbabwe</p>
   </footer>
 
-  <!-- Scripts -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("DOMContentLoaded", () => {
       if (window.feather) feather.replace();
 
-      const menuToggle = document.getElementById('menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const header = document.querySelector('header');
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
 
-      // Mobile menu toggle
-      menuToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        document.body.classList.toggle('menu-open');
+      menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        document.body.classList.toggle("menu-open");
       });
 
-      // Hide mobile menu when a link is clicked
-      mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-          document.body.classList.remove('menu-open');
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          document.body.classList.remove("menu-open");
         });
       });
 
-      // Shrink navbar on scroll for desktop only
-      window.addEventListener('scroll', () => {
-        if (window.matchMedia('(min-width: 768px)').matches) {
-          if (window.scrollY > 10) {
-            header.classList.add('navbar-shrink');
-          } else {
-            header.classList.remove('navbar-shrink');
-          }
-        }
-      });
-
-      // ESC closes mobile menu
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
-          mobileMenu.classList.add('hidden');
-          document.body.classList.remove('menu-open');
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.add("hidden");
+          document.body.classList.remove("menu-open");
         }
       });
     });
