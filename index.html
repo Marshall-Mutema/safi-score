@@ -10,49 +10,31 @@
   <script src="https://unpkg.com/feather-icons" defer></script>
 
   <style>
-    /* Desktop: Fixed translucent navbar with shadow on scroll */
-    @media (min-width: 768px) {
-      header {
-        position: fixed;
-        top: 0; left: 0; right: 0;
-        z-index: 50;
-        padding: 0.5rem 1.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.6);
-        backdrop-filter: saturate(180%) blur(10px);
-        -webkit-backdrop-filter: saturate(180%) blur(10px);
-        border-bottom: 1px solid rgba(255 255 255 / 0.1);
-        transition: box-shadow 0.3s ease;
-        box-shadow: none;
-      }
-      header.scrolled {
-        box-shadow: 0 2px 12px rgba(0,0,0,0.8);
-      }
+    /* Fixed navbar with translucent blurred background and shadow transition */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      padding: 0.5rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      border-bottom: 1px solid rgba(255 255 255 / 0.1);
+      transition: box-shadow 0.3s ease;
+      box-shadow: none;
     }
-
-    /* Mobile: Static navbar */
-    @media (max-width: 767px) {
-      header {
-        position: static;
-        background-color: #000;
-        padding: 0.5rem 1.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+    header.scrolled {
+      box-shadow: 0 2px 12px rgba(0,0,0,0.8);
     }
-
-    /* Navbar logo */
     .navbar-logo {
-      height: 48px;
-      width: 96px;
+      height: 56px;
+      width: 112px;
       object-fit: contain;
       display: block;
     }
-
-    /* Desktop nav menu */
     nav#nav-menu {
       display: none;
       gap: 1rem;
@@ -80,13 +62,11 @@
         padding-right: 1rem;
       }
     }
-
-    /* Mobile dropdown menu */
     #mobile-menu {
       display: none;
       background-color: #000;
       padding: 1rem 1.5rem;
-      position: static; /* scrolls with page */
+      position: static;
     }
     #mobile-menu.show {
       display: block;
@@ -104,12 +84,10 @@
       outline: none;
     }
 
-    /* Hero Section and Content Styles */
     main {
-      padding-top: 64px; /* To prevent content behind fixed desktop navbar */
+      padding-top: 64px;
       background-color: #000;
     }
-
     #hero-section {
       text-align: center;
       color: white;
@@ -117,7 +95,6 @@
       max-width: 720px;
       margin: 0 auto;
     }
-
     #hero-title {
       font-size: 2.25rem;
       font-weight: 700;
@@ -131,7 +108,6 @@
       opacity: 1;
       transform: none;
     }
-
     #hero-description {
       font-size: 1.25rem;
       color: rgba(255 255 255 / 0.85);
@@ -145,7 +121,6 @@
       opacity: 1;
       transform: none;
     }
-
     #hero-ctas {
       display: flex;
       flex-wrap: wrap;
@@ -163,7 +138,6 @@
       opacity: 1;
       transform: none;
     }
-
     .cta-btn {
       flex: 1 1 280px;
       padding: 1rem 1.5rem;
@@ -197,8 +171,6 @@
       border-color: #16a34a;
       outline: none;
     }
-
-    /* Responsive Hero text sizing and CTA */
     @media (min-width: 768px) {
       #hero-title {
         font-size: 3rem;
@@ -213,8 +185,6 @@
         flex: 1 1 45%;
       }
     }
-
-    /* Accessibility helpers */
     .sr-only {
       position: absolute;
       width: 1px; height: 1px;
@@ -280,7 +250,9 @@
       </div>
     </section>
 
-    <!-- About -->
+    <!-- The rest of your previously included content sections here -->
+    <!-- About, How it Works, Features, Why, Resources, Pricing, Blog, Contact, API Docs, Footer -->
+
     <section id="about" class="bg-green-900 py-20 px-6 text-white" aria-labelledby="about-title">
       <div class="max-w-5xl mx-auto text-center">
         <h2 id="about-title" class="text-3xl font-bold mb-6">About SafiScore</h2>
@@ -290,7 +262,6 @@
       </div>
     </section>
 
-    <!-- How It Works -->
     <section id="how" class="bg-[#0d1117] py-20 px-6 text-white" aria-labelledby="how-title">
       <div class="max-w-6xl mx-auto text-center">
         <h2 id="how-title" class="text-3xl font-bold mb-12">How It Works</h2>
@@ -314,7 +285,6 @@
       </div>
     </section>
 
-    <!-- Features -->
     <section id="features" class="bg-[#161b22] py-20 px-6 text-white" aria-labelledby="features-title">
       <div class="max-w-6xl mx-auto text-center">
         <h2 id="features-title" class="text-3xl font-bold mb-12">Platform Features</h2>
@@ -351,7 +321,6 @@
       </div>
     </section>
 
-    <!-- Why Alternative Credit Scoring Works in Africa -->
     <section id="why-alternative" class="bg-[#0d1117] py-20 px-6 text-white max-w-6xl mx-auto" aria-labelledby="why-title">
       <h2 id="why-title" class="text-3xl font-bold mb-12 text-center">Why Alternative Credit Scoring Works in Africa</h2>
       <div class="space-y-20">
@@ -398,7 +367,6 @@
       </div>
     </section>
 
-    <!-- Resources -->
     <section id="resources" class="bg-black py-20 px-6 text-white text-center" aria-labelledby="resources-title">
       <div class="max-w-5xl mx-auto">
         <h2 id="resources-title" class="text-3xl font-bold mb-6">Resources</h2>
@@ -407,7 +375,6 @@
       </div>
     </section>
 
-    <!-- Pricing -->
     <section id="pricing" class="bg-[#0d1117] py-20 px-6 text-white text-center" aria-labelledby="pricing-title">
       <div class="max-w-4xl mx-auto">
         <h2 id="pricing-title" class="text-3xl font-bold mb-6">Pricing</h2>
@@ -421,7 +388,6 @@
       </div>
     </section>
 
-    <!-- Blog -->
     <section id="blog" class="bg-black py-20 px-6 text-white text-center" aria-labelledby="blog-title">
       <div class="max-w-4xl mx-auto">
         <h2 id="blog-title" class="text-3xl font-bold mb-6">Blog & Thought Leadership</h2>
@@ -429,7 +395,6 @@
       </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact" class="bg-green-900 py-20 px-6 text-white text-center" aria-labelledby="contact-title">
       <div class="max-w-lg mx-auto">
         <h2 id="contact-title" class="text-3xl font-bold mb-4">Contact Us</h2>
@@ -448,7 +413,6 @@
       </div>
     </section>
 
-    <!-- API Docs -->
     <section id="api" class="bg-black py-20 px-6 text-white text-center" aria-labelledby="api-title">
       <div class="max-w-4xl mx-auto">
         <h2 id="api-title" class="text-3xl font-bold mb-6">API Documentation</h2>
@@ -474,17 +438,20 @@
       // Toggle mobile menu
       menuToggle.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('show');
         document.body.classList.toggle('menu-open');
       });
 
+      // Close mobile menu when any link clicked
       mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           mobileMenu.classList.add('hidden');
+          mobileMenu.classList.remove('show');
           document.body.classList.remove('menu-open');
         });
       });
 
-      // Navbar shadow on scroll desktop only
+      // Navbar shadow on scroll (only for desktop)
       window.addEventListener('scroll', () => {
         if(window.innerWidth >= 768) {
           if (window.scrollY > 10) {
@@ -495,7 +462,7 @@
         }
       });
 
-      // IntersectionObserver for animations
+      // IntersectionObserver for fade/slide animations
       const options = { threshold: 0.1 };
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -506,7 +473,6 @@
         });
       }, options);
 
-      // Observe various content elements
       const animateElements = document.querySelectorAll(
         '#hero-title, #hero-description, #hero-ctas > a, ' + 
         '#about-title, #how-title, #features-title, #why-title, ' +
@@ -515,10 +481,11 @@
       );
       animateElements.forEach(el => observer.observe(el));
 
-      // Close mobile menu on ESC
+      // Close mobile menu on ESC key
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
           mobileMenu.classList.add('hidden');
+          mobileMenu.classList.remove('show');
           document.body.classList.remove('menu-open');
         }
       });
