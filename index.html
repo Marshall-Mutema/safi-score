@@ -1,366 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SafiScore – Alternative Credit for Zimbabwe</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet" />
+  <!-- Lato and Playfair fonts for Cambridge-like feel -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --brand-green: #19B85D;
       --deep-green: #1A652A;
       --gold: #FBC02D;
-      --midnight: #16221A;
-      --background: #101313;
-      --white: #F7F9F7;
-      --gray-bg: #18241A;
-      --shadow: 0 4px 24px rgba(0,0,0,0.14);
+      --sage: #F7F9F7;
+      --night: #19212B;
+      --gray: #ededed;
+      --border: #FBC02D;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Roboto', Arial, sans-serif;
-      color: var(--white);
-      background: var(--background);
-      line-height: 1.55;
-      overflow-x: hidden;
+      font-family: 'Lato', Arial, sans-serif;
+      background: var(--night);
+      color: var(--sage);
+      margin: 0;
+      padding: 0;
+      line-height: 1.65;
     }
     header {
+      background-color: var(--night);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 8vw;
-      background: var(--midnight);
-      box-shadow: var(--shadow);
-      flex-wrap: wrap;
+      padding: 17px 6vw 17px 6vw;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      position: relative;
+      z-index: 20;
     }
     .logo-area {
       display: flex;
       align-items: center;
-      font-size: 1.6rem;
-      font-weight: 700;
       gap: 14px;
     }
     .logo-area span {
+      font-family: 'Playfair Display', serif;
       color: var(--brand-green);
+      font-size: 1.63rem;
       font-weight: 700;
-      letter-spacing: .02rem;
-      font-size: 1.4rem;
+      letter-spacing: 0.01em;
     }
-    .nav {
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      color: var(--sage);
+      font-size: 1.9rem;
+      cursor: pointer;
+      display: none;
+    }
+    nav {
       display: flex;
-      gap: 26px;
       align-items: center;
-      flex-wrap: wrap;
+      gap: 36px;
     }
-    .nav a {
-      color: var(--white);
+    nav a {
+      color: var(--sage);
+      font-size: 1.07rem;
+      letter-spacing: .01em;
       text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.2s;
-      white-space: nowrap;
+      padding: 6px 18px;
+      font-weight: 700;
+      transition: background 0.18s, color 0.18s;
+      border-radius: 18px;
     }
-    .nav a:hover { color: var(--gold);}
+    nav a:hover,
+    nav a.active {
+      background: var(--gold);
+      color: var(--deep-green);
+    }
     .cta-btn {
       background: var(--brand-green);
       color: #fff;
-      padding: 10px 26px;
       border: none;
       border-radius: 20px;
+      padding: 10px 26px;
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 700;
+      letter-spacing: .01em;
       cursor: pointer;
-      margin-left: 12px;
-      box-shadow: 0 2px 10px rgba(25,184,93,0.13);
-      transition: background 0.2s, color 0.2s;
-      white-space: nowrap;
+      box-shadow: 0 2px 9px rgba(25,184,93,0.12);
+      margin-left: 8px;
+      transition: background 0.22s;
     }
     .cta-btn.secondary {
-      background: var(--midnight);
-      border: 2px solid var(--brand-green);
-      color: var(--brand-green);
-    }
-    .cta-btn:hover { background: var(--gold); color: var(--midnight);}
-    .hero {
-      text-align: center;
-      background: linear-gradient(120deg, #173A1A 70%, var(--background) 100%);
-      padding: 50px 4vw 44px 4vw;
-      position: relative;
-    }
-    .hero h1 {
-      font-size: 2.7rem;
-      font-weight: 700;
-      color: var(--brand-green);
-      margin-bottom: 14px;
-    }
-    .hero p {
-      color: var(--white);
-      font-size: 1.21rem;
-      margin-bottom: 28px;
-      max-width: 520px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .hero-cta-btns {
-      display: inline-flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 16px;
-    }
-    .how-section {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      background: var(--gray-bg);
-      padding: 54px 7vw 54px 7vw;
-      gap: 44px;
-    }
-    .how-text {
-      flex: 1 1 320px; max-width: 600px;
-      min-width: 260px;
-    }
-    .how-text h2 {
-      font-size: 2rem;
-      color: var(--brand-green);
-      margin-bottom: 18px;
-    }
-    .steps {list-style: none;}
-    .steps li {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      font-size: 1.13rem;
-      margin-bottom: 18px;
-      color: var(--white);
-    }
-    .step-icon {
-      font-size: 1.5em;
-      color: var(--gold);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .how-visual {
-      flex: 1 1 240px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-width: 240px;
-      margin-top: 16px;
-    }
-    .phone-frame {
-      width: 180px;
-      height: 340px;
-      background: var(--background);
-      border: 2.5px solid var(--brand-green);
-      border-radius: 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin-top: 5px;
-      overflow: hidden;
-      box-shadow: 0 7px 24px rgba(25,184,93,0.08);
-    }
-    .phone-content {
-      margin: 44px 0 0 0;
-      text-align: center;
-    }
-    .score-pulse {
-      width: 92px; height: 92px;
-      border-radius: 50%;
-      background: var(--midnight);
-      border: 2px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2em; font-weight: 700; color: var(--gold);
-      box-shadow: 0 3px 18px rgba(251,192,45,0.24);
-      margin-bottom: 12px;
-    }
-    .social-icons {
-      display: flex; gap: 10px; justify-content: center; margin:18px 0 0 0;
-    }
-    .feature-section {
-      background: var(--midnight);
-      padding: 54px 7vw;
-    }
-    .feature-section h2 {
-      font-size: 2rem; text-align: center;
-      color: var(--gold); margin-bottom: 8px;
-    }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px,1fr));
-      gap: 32px;
-      margin-top: 24px;
-    }
-    .feature {
-      background: var(--gray-bg);
-      border-radius: 14px;
-      box-shadow: var(--shadow);
-      padding: 26px 22px;
-      min-height: 180px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      color: var(--gold);
-      transition: box-shadow 0.15s;
-    }
-    .feature:hover { box-shadow: 0 6px 20px rgba(251,192,45,0.29);}
-    .feature-icon {
-      font-size: 2rem; margin-bottom: 14px; color: var(--brand-green);
-    }
-    .feature-title {
-      font-weight: 700; margin-bottom: 8px; color: var(--brand-green);
-    }
-    .impact-section {
-      background: linear-gradient(90deg, var(--deep-green) 50%, var(--midnight) 100%);
-      color: var(--white);
-      padding: 48px 7vw;
-      text-align: center;
-    }
-    .impact-title {
-      font-size: 2.1rem;
-      margin-bottom: 14px;
-      color: var(--brand-green);
-    }
-    .sdg-icons {
-      display: flex; gap: 38px;
-      justify-content: center;
-      margin: 28px 0;
-      flex-wrap: wrap;
-    }
-    .sdg-icon {
-      display: flex; flex-direction: column; align-items: center; min-width: 100px;
-    }
-    .sdg-icon img {
-      width: 44px; height: 44px; margin-bottom: 5px;
-      filter: drop-shadow(0 1px 3px rgba(26,101,42,0.22));
-    }
-    .sdg-label { color: var(--gold); font-weight: 600; text-align: center; margin-top: 3px;}
-    section.user-stories {
-      background: var(--gray-bg);
-      padding: 38px 5vw 34px 5vw;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 26px;
-      justify-content: center;
-    }
-    .story-card {
-      background: #1A652A;
-      border-radius: 14px;
-      padding: 24px 18px;
-      max-width: 295px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      box-shadow: 0 2px 8px rgba(25,184,93,0.09);
-      color: var(--white);
-    }
-    .story-avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
       background: var(--gold);
-      margin-bottom: 10px;
-      background-size: cover;
-      background-position: center;
+      color: var(--deep-green);
+      border: 2px solid var(--brand-green);
+      margin-left: 0;
+      margin-top: 8px;
     }
-    .story-name { font-weight: 700; margin-bottom: 8px; font-size: 1rem; }
-    .story-quote { font-size: 1.04rem; color: var(--gold); margin-bottom: 0; font-style: italic;}
-    .lender-box {
+    .cta-btn:hover,
+    .cta-btn.secondary:hover {
       background: var(--brand-green);
-      border-radius: 13px;
-      color: var(--midnight);
-      padding: 32px 20px;
-      display: flex;
+      color: #fff;
+    }
+    /* Dropdown menu for mobile */
+    .dropdown-menu {
+      position: absolute;
+      top: 62px;
+      left: 0;
+      width: 100vw;
+      background: var(--night);
+      box-shadow: 0 5px 17px rgba(0,0,0,0.13);
+      border-bottom: 2px solid var(--border);
+      display: none;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 30px 0;
-      text-align: center;
-      font-weight: 600;
-      box-shadow: 0 8px 30px rgba(25,184,93,0.17);
+      z-index: 99;
+      animation: fadeInMenu 0.21s;
     }
-    .lender-box h3 { margin-bottom: 10px; font-size: 1.19rem;}
-    .lender-box p { margin-bottom: 14px; font-weight: 500; color: var(--midnight);}
-    .lender-cta {
-      background: var(--midnight);
-      color: var(--gold);
-      font-weight: 700;
-      border: none;
-      border-radius: 18px;
-      padding: 10px 32px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.21);
+    .dropdown-menu.open { display: flex; }
+    .dropdown-menu a,
+    .dropdown-menu .cta-btn,
+    .dropdown-menu .cta-btn.secondary {
+      padding: 13px 15vw;
+      margin: 0;
+      text-align: left;
+      font-size: 1.14rem;
+      border-radius: 0;
+      border-bottom: 1px solid #313a45;
+      background: none;
     }
-    .lender-cta:hover { background: var(--gold); color: var(--midnight);}
-    .security-section {
-      background: var(--gray-bg);
-      padding: 40px 7vw;
-      text-align: center;
-      color: var(--white);
+    .dropdown-menu .cta-btn { border-radius: 6px; margin:10px 0; }
+    @keyframes fadeInMenu {
+      from { opacity: 0; transform: translateY(-18px);}
+      to   { opacity: 1; transform: translateY(0);}
     }
-    .security-section h2 { color: var(--brand-green); margin-bottom: 18px; }
-    .faqs {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 25px 0;
-    }
-    .faq {
-      background: #233A28;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      padding: 16px 20px;
-      margin-bottom: 14px;
-      cursor: pointer;
-      transition: box-shadow 0.13s;
-      color: var(--white);
-    }
-    .faq:hover { box-shadow: 0 4px 22px rgba(25,184,93,0.08);}
-    .faq-title { font-weight: 700; font-size: 1.08rem;}
-    .faq-content {
-      font-size: 1.01rem; color: var(--gold); margin-top: 7px;
-    }
-    .footer {
-      background: var(--midnight);
-      color: var(--white);
-      text-align: center;
-      padding: 26px 4vw 13px 4vw;
-      font-size: .98rem;
-      border-radius: 0 0 20px 20px;
-    }
-    .footer-links { margin-top: 13px;}
-    .footer-links a { color: var(--brand-green); text-decoration: none; margin: 0 9px;}
-    .footer-links a:hover { color: var(--gold);}
-    @media (max-width: 900px) {
-      header, .how-section, .feature-section, .impact-section, .security-section { padding-left: 2vw; padding-right: 2vw; }
-      .how-section, .feature-section, .impact-section { flex-direction: column; align-items: stretch; }
-      .features { grid-template-columns: 1fr !important; }
-      .sdg-icons { flex-direction: column; gap: 19px; }
+    @media (max-width: 950px) {
+      .dropdown-toggle { display: inline; }
+      nav { display: none; }
+      .logo-area span { font-size: 1.21rem; }
+      header { padding: 14px 3vw 14px 3vw; }
+      .dropdown-menu a,.dropdown-menu .cta-btn { font-size: 1.07rem;}
     }
     @media (max-width: 600px) {
-      header { flex-direction: column; gap: 11px; padding: 13px 12px; }
-      .nav { flex-direction: column; gap: 8px; width: 100%; }
-      .nav a, .cta-btn, .cta-btn.secondary { width: 100%; margin: 7px 0 0 0; }
-      .hero { padding: 22px 4vw; }
-      .hero h1 { font-size: 1.75rem; }
-      .features, .sdg-icons { grid-template-columns: 1fr !important; }
-      .story-card { max-width: 100%; padding: 14px 7px;}
-      .how-text, .how-visual { max-width: 100%; min-width: auto; }
-      .lender-box { min-width: auto; padding: 17px 7px;}
+      .logo-area svg { width: 34px; height: 34px;}
+      .logo-area span { font-size: 1rem; }
+      .dropdown-toggle { font-size: 2.2rem;}
+    }
+    /* Hero section */
+    .hero {
+      text-align: center;
+      background: linear-gradient(120deg, #173A1A 77%, var(--night) 100%);
+      padding: 45px 3vw 42px 3vw;
+      position: relative;
+      border-bottom: 2.5px solid var(--border);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--brand-green);
+      letter-spacing: .01em;
+      margin-bottom: 13px;
+    }
+    .hero p {
+      font-size: 1.13rem;
+      color: var(--sage);
+      font-weight: 400;
+      max-width: 500px;
+      margin: 0 auto 22px auto;
+    }
+    .hero-message {
+      border: 2px solid var(--border);
+      border-radius: 13px;
+      background: rgba(26,101,42,0.18);
+      margin: 0 auto 23px auto;
+      max-width: 390px;
+      padding: 17px 18px;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.17rem;
+      box-shadow: 0 5px 20px rgba(251,192,45,0.09);
+    }
+
+    /* Section call-outs and cards */
+    section {
+      margin: 0 auto 25px auto;
+      max-width: 1020px;
+      padding: 26px 12vw 16px 12vw;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 12px 0 20px 0;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 7px;
+    }
+    .key-message {
+      border: 2px solid var(--gold);
+      border-radius: 11px;
+      background: rgba(251,192,45,0.07);
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 1.02rem;
+      padding: 15px 13px;
+      margin: 9px 0 19px 0;
+      text-align: center;
+    }
+    .card-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 21px;
+      justify-content: center;
+    }
+    .card {
+      background: var(--gray);
+      color: var(--deep-green);
+      border-radius: 12px;
+      border: 2px solid #c7d2bc;
+      box-shadow: 0 1px 5px rgba(25,184,93,0.06);
+      padding: 21px 19px;
+      min-width: 210px;
+      max-width: 290px;
+      flex: 1 1 211px;
+      text-align: left;
+      font-size: 1.03rem;
+      margin-bottom: 6px;
+      font-family: 'Lato', Arial, sans-serif;
+    }
+    .card strong { color: var(--brand-green);}
+    .ranking-card {
+      border: 2px solid var(--border);
+      background: rgba(26,101,42,0.09);
+      color: var(--gold);
+      font-weight:700;
+      font-size: 1.07rem;
+      margin: 0 auto 18px auto;
+      text-align:center;
+    }
+    .insights-title {
+      color: var(--brand-green);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 27px 0 7px 0;
+      letter-spacing: .02em;
+    }
+    .insight {
+      border-left: 5px solid var(--brand-green);
+      background: rgba(25,184,93,0.07);
+      margin: 0 0 18px 0;
+      padding: 11px 15px 11px 14px;
+      border-radius: 0 6px 6px 0;
+      color: var(--sage);
+      box-shadow: 0 1px 4px rgba(26,101,42,0.04);
+    }
+    .insight strong { color: var(--gold);}
+    .upcoming-events {
+      margin: 16px 0 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--sage);
+    }
+    .upcoming-events li {
+      margin-bottom: 10px;
+      padding: 11px 12px;
+      border: 1.5px solid var(--brand-green);
+      border-radius: 7px;
+      background: rgba(25,184,93,0.09);
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+    /* Responsive for key tiles/sections */
+    @media (max-width: 900px) {
+      section { padding-left: 4vw; padding-right: 4vw;}
+      .card-row { flex-direction: column; gap: 13px;}
+      .card, .ranking-card { min-width: unset; max-width: 100%;}
+    }
+    @media (max-width: 600px) {
+      section { padding: 12px 1vw;}
+      .hero { padding: 24px 2vw 25px 2vw;}
+      .hero-message { font-size: 1.01rem; padding: 10px 8px;}
+      .section-title { font-size: 1.23rem; }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo-area" aria-label="SafiScore logo and branding">
-      <!-- Logo: Modern green + gold fintech style, shield/circle + leaves -->
-      <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <div class="logo-area">
+      <svg width="38" height="38" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <circle cx="27" cy="27" r="25" stroke="#19B85D" stroke-width="4" fill="none"/>
         <g stroke="#FBC02D" stroke-linecap="round">
           <line x1="27" y1="4" x2="27" y2="13" stroke-width="2"/>
@@ -371,229 +296,109 @@
         <rect x="25" y="28" width="4" height="15" rx="2" fill="#19B85D"/>
         <ellipse cx="20" cy="33" rx="6" ry="2.5" fill="#FBC02D" transform="rotate(-25 20 33)"/>
         <ellipse cx="34" cy="33" rx="6" ry="2.5" fill="#FBC02D" transform="rotate(25 34 33)"/>
-        <ellipse cx="27" cy="44" rx="7" ry="3" fill="#1A652A" opacity="0.15"/>
+        <ellipse cx="27" cy="44" rx="7" ry="3" fill="#1A652A" opacity="0.13"/>
       </svg>
       <span>SafiScore</span>
     </div>
-    <nav class="nav" aria-label="Primary navigation">
+    <button class="dropdown-toggle" aria-label="Open navigation" onclick="toggleMenu()" id="menu-btn">&#9776;</button>
+    <nav class="main-nav">
       <a href="#how">How It Works</a>
-      <a href="#features">Features</a>
-      <a href="#impact">Impact</a>
-      <a href="#stories">Stories</a>
-      <a href="#lenders">For Lenders</a>
+      <a href="#rankings">Rankings</a>
+      <a href="#insights">Insights</a>
+      <a href="#events">Events</a>
       <a href="#signup" class="cta-btn">Sign Up</a>
       <a href="#login" class="cta-btn secondary">Log In</a>
     </nav>
+    <div class="dropdown-menu" id="dropdown-menu">
+      <a href="#how" onclick="closeMenu()">How It Works</a>
+      <a href="#rankings" onclick="closeMenu()">Rankings</a>
+      <a href="#insights" onclick="closeMenu()">Insights</a>
+      <a href="#events" onclick="closeMenu()">Events</a>
+      <button class="cta-btn" onclick="closeMenu()">Sign Up</button>
+      <button class="cta-btn secondary" onclick="closeMenu()">Log In</button>
+    </div>
   </header>
-
-  <main>
-    <section class="hero" role="banner" aria-label="Unlock Your Financial Future">
-      <h1>Unlock Your Financial Future</h1>
-      <p>
-        Alternative credit scoring for Zimbabwe’s underbanked—using
-        <span style="font-weight:500; color: var(--brand-green);">mobile payments</span>,
-        behavioral data, and psychometrics to drive digital and financial inclusion for all.
-      </p>
-      <div class="hero-cta-btns">
-        <a href="#signup" class="cta-btn">Get Your Free SafiScore</a>
-        <a href="#lenders" class="cta-btn secondary">For Lenders</a>
-      </div>
-    </section>
-
-    <section class="how-section" id="how" aria-labelledby="how-title">
-      <div class="how-text">
-        <h2 id="how-title">How SafiScore Works</h2>
-        <ul class="steps">
-          <li>
-            <span class="step-icon">①</span>
-            <span>Sign up and consent to share your data—EcoCash, web, or social activity.</span>
-          </li>
-          <li>
-            <span class="step-icon">②</span>
-            <span>We analyze your real behavioral patterns and transaction history, protected and private.</span>
-          </li>
-          <li>
-            <span class="step-icon">③</span>
-            <span>Instantly receive your SafiScore credit summary for personal or business finance.</span>
-          </li>
-          <li>
-            <span class="step-icon">🏆</span>
-            <span>Get rewarded for responsible financial steps, pay on time and boost your score.</span>
-          </li>
-        </ul>
-      </div>
-      <div class="how-visual" aria-hidden="true">
-        <div class="phone-frame" aria-label="Phone screen displaying SafiScore credit score">
-          <div class="phone-content">
-            <div class="score-pulse">742</div>
-            <div style="font-size:.98em; color:var(--gold);">Your SafiScore</div>
-            <div class="social-icons" style="margin-top:10px;">
-              <img src="ecocash-icon.svg" alt="EcoCash" />
-              <img src="facebook-icon.svg" alt="Facebook" />
-              <img src="zap-icon.svg" alt="Web or USSD" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="feature-section" id="features" aria-labelledby="features-title">
-      <h2 id="features-title">Features</h2>
-      <div class="features">
-        <div class="feature">
-          <span class="feature-icon">📱</span>
-          <div class="feature-title">Mobile-First & Inclusive</div>
-          <div>Access your score from any phone—SMS, app, or web.</div>
-        </div>
-        <div class="feature">
-          <span class="feature-icon">💡</span>
-          <div class="feature-title">Alternative Data (EcoCash, Social)</div>
-          <div>Fairer scores using your true digital & financial footprint.</div>
-        </div>
-        <div class="feature">
-          <span class="feature-icon">🧠</span>
-          <div class="feature-title">Psychometric Insights</div>
-          <div>Smart, behavioral scoring for the modern borrower.</div>
-        </div>
-        <div class="feature">
-          <span class="feature-icon">🔒</span>
-          <div class="feature-title">Consent & Privacy</div>
-          <div>You're in control—data encrypted, shared with your approval only.</div>
-        </div>
-        <div class="feature">
-          <span class="feature-icon">🏆</span>
-          <div class="feature-title">Rewards & Benefits</div>
-          <div>Earn rewards & better rates for positive finance habits.</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="impact-section" id="impact" aria-labelledby="impact-title">
-      <div class="impact-title" id="impact-title">Aligned with the UN SDGs</div>
-      <div>Building decent work, innovation, and reducing inequality in Zimbabwe.</div>
-      <div class="sdg-icons">
-        <div class="sdg-icon">
-          <img src="sdg8.svg" alt="SDG 8" />
-          <div class="sdg-label">Decent Work & Growth</div>
-        </div>
-        <div class="sdg-icon">
-          <img src="sdg9.svg" alt="SDG 9" />
-          <div class="sdg-label">Innovation & Infrastructure</div>
-        </div>
-        <div class="sdg-icon">
-          <img src="sdg10.svg" alt="SDG 10" />
-          <div class="sdg-label">Reducing Inequality</div>
-        </div>
-      </div>
-      <div style="font-size: 1.07rem; margin-top: 19px; font-style: italic; color: var(--gold);">
-        "SafiScore empowers every Zimbabwean—urban or rural, entrepreneur or everyday citizen—to join the formal financial system."
-      </div>
-    </section>
-
-    <section class="user-stories" id="stories" aria-label="User stories">
-      <div class="story-card">
-        <div class="story-avatar" style="background: url('user1.jpg') center/cover;"></div>
-        <div class="story-name">Chipo M., Market Vendor</div>
-        <div class="story-quote">
-          “SafiScore let me access a micro-loan for my market stand—no paperwork, just my EcoCash! Now business is growing.”
-        </div>
-      </div>
-      <div class="story-card">
-        <div class="story-avatar" style="background: url('user2.jpg') center/cover;"></div>
-        <div class="story-name">Sibongile T., Hairdresser</div>
-        <div class="story-quote">
-          “I didn’t have a formal credit file but SafiScore used my mobile habits—now I got my first ever loan!”
-        </div>
-      </div>
-      <div class="story-card">
-        <div class="story-avatar" style="background: url('user3.jpg') center/cover;"></div>
-        <div class="story-name">Blessing K., Young Entrepreneur</div>
-        <div class="story-quote">
-          “Fast, transparent, and fair. I feel included now. My dreams are valid.”
-        </div>
-      </div>
-    </section>
-
-    <div class="lender-box" id="lenders" aria-label="For Lenders and Financial Partners">
-      <h3>For Lenders & Financial Partners</h3>
-      <p>
-        Plug-in via our API or dashboard to instantly expand your reach—score more clients, manage risk smarter,
-        and support Zimbabwean growth.<br /><br />
-        <strong>Seamless integration, real-time decisioning, responsible and inclusive lending.</strong>
-      </p>
-      <button class="lender-cta" type="button">Request a Demo</button>
+  <section class="hero">
+    <h1>Unlock Your Financial Future</h1>
+    <div class="hero-message">
+      Trusted, modern credit scoring built for Africa—safe, fair, and empowering, for all.
     </div>
+    <p>
+      <strong>Safi</strong> means <span style="color:var(--brand-green);font-weight:600">safe</span> in Swahili.<br>
+      SafiScore puts financial inclusion and growth within everyone’s reach, using data, digital behaviour and trust as the foundation for fair credit.
+    </p>
+    <div class="hero-cta-btns">
+      <a href="#signup" class="cta-btn">Get Your Free SafiScore</a>
+      <a href="#how" class="cta-btn secondary">Learn More</a>
+    </div>
+  </section>
 
-    <section class="security-section" aria-label="Trust and Security">
-      <h2>Trust & Security</h2>
-      <div>
-        Data is always <b>encrypted</b>, never shared without your explicit consent, and compliant with Zimbabwe’s laws.
-      </div>
-      <div style="margin: 18px 0;">
-        <span style="background:var(--brand-green); color: #fff; padding:6px 11px; border-radius:12px; margin-right:7px;">Privacy First</span>
-        <span style="background:var(--deep-green); color: #fff; padding:6px 11px; border-radius:12px;">Regulated</span>
-        <span style="background:var(--gold); color: #232; padding:6px 11px; border-radius:12px;">Zimbabwe Owned</span>
-      </div>
-    </section>
+  <section id="how">
+    <div class="section-title">How SafiScore Works</div>
+    <div class="key-message">
+      It all starts with your consent—your digital profile unlocks your financial potential, safely and privately.
+    </div>
+    <div class="card-row">
+      <div class="card"><strong>Step 1:</strong> Sign up and share EcoCash, web, or social data securely.</div>
+      <div class="card"><strong>Step 2:</strong> Our analytics instantly calculate your SafiScore.</div>
+      <div class="card"><strong>Step 3:</strong> Use your SafiScore to access better products and rates.</div>
+      <div class="card"><strong>Step 4:</strong> Build your score with positive financial behaviors and get rewarded.</div>
+    </div>
+  </section>
 
-    <section class="faqs" aria-label="Frequently Asked Questions">
-      <div class="faq" tabindex="0">
-        <div class="faq-title">What is alternative credit scoring?</div>
-        <div class="faq-content" hidden>
-          We use mobile payments, social, and behavioral data—with your consent—instead of only bank history, to build a fairer, more accurate score.
-        </div>
-      </div>
-      <div class="faq" tabindex="0">
-        <div class="faq-title">Who can access SafiScore?</div>
-        <div class="faq-content" hidden>
-          Any Zimbabwean can sign up—especially if you lack bank credit history. Lenders, too, can access with user permission!
-        </div>
-      </div>
-      <div class="faq" tabindex="0">
-        <div class="faq-title">Is my data safe?</div>
-        <div class="faq-content" hidden>
-          Yes. Data is encrypted and used only for scoring, with strict controls meeting Reserve Bank of Zimbabwe guidelines.
-        </div>
-      </div>
-      <div class="faq" tabindex="0">
-        <div class="faq-title">How do I improve my SafiScore?</div>
-        <div class="faq-content" hidden>
-          Use EcoCash responsibly, pay lenders on time, and engage in positive digital habits. Our app will guide you with personalized tips!
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer class="footer" role="contentinfo">
+  <section id="rankings">
+    <div class="section-title">Rankings & Recognition</div>
+    <div class="ranking-card">#1 for Business and Management Studies (REF 2021, UK)</div>
+    <div class="ranking-card">#2 One-year MBA in the UK (FT 2024)</div>
+    <div class="ranking-card">#2 Master of Finance globally (FT MFin)</div>
+    <div class="ranking-card">Winner, FT Responsible Business Education Awards 2025</div>
+  </section>
+
+  <section id="insights">
+    <div class="section-title">Insights</div>
+    <div class="insights-title">Latest on Digital Trust, Inclusion & Growth</div>
+    <div class="insight"><strong>Organisational Lethality:</strong> Professor Neil Stott argues ethical actions are needed to address not just the outcomes but causes of harm in organisations.</div>
+    <div class="insight"><strong>AI Collaboration:</strong> Strategic linkups drive fintech innovation—yet must address data, power, and ethics.</div>
+    <div class="insight"><strong>Leadership with Purpose:</strong> Charismatic leadership can unite and inspire, but also must avoid the trappings of narcissism and hubris.</div>
+  </section>
+
+  <section id="events">
+    <div class="section-title">Upcoming Events</div>
+    <ul class="upcoming-events">
+      <li>Meet us in Santiago to learn about the Cambridge MBA.</li>
+      <li>In-depth MBA application webinar (online).</li>
+      <li>Networking in São Paulo and Lima: Inclusion in action.</li>
+    </ul>
+  </section>
+
+  <footer class="footer" role="contentinfo" style="background:var(--night);color:var(--sage);padding:1.7em 0 1em 0;font-size:.99rem;">
     <div>
-      <span style="color: var(--gold); font-weight: 700;">SafiScore</span> - Driving Digital & Financial Inclusion © 2024
+      <span style="color: var(--gold); font-weight: 700;">SafiScore</span> — Designed for financial empowerment.
     </div>
-    <div class="footer-links">
-      <a href="#terms">Terms & Conditions</a> | 
-      <a href="#privacy">Privacy Policy</a> | 
+    <div class="footer-links" style="margin:12px 0 0 0;">
+      <a href="#terms">Terms</a> | 
+      <a href="#privacy">Privacy</a> | 
       <a href="#contact">Contact</a>
     </div>
-    <div style="margin-top: 13px;">
-      <img src="sdg-badge.svg" alt="SDGs badge" style="height: 22px; vertical-align: middle;" />
-      <span style="margin-left: 5px; color: var(--brand-green);">Supporting SDGs 8, 9, 10</span>
-    </div>
   </footer>
-
   <script>
-    document.querySelectorAll('.faq').forEach(faq => {
-      faq.addEventListener('click', () => {
-        const content = faq.querySelector('.faq-content');
-        if (content.hasAttribute('hidden')) {
-          content.removeAttribute('hidden');
-        } else {
-          content.setAttribute('hidden', '');
-        }
-      });
-      faq.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          faq.click();
-        }
-      });
+    // Dropdown for mobile nav
+    function toggleMenu() {
+      var menu = document.getElementById('dropdown-menu');
+      menu.classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('dropdown-menu').classList.remove('open');
+    }
+    // Hide menu when link/button selected
+    document.querySelectorAll('.dropdown-menu a, .dropdown-menu .cta-btn').forEach(function(el) {
+      el.addEventListener('click', closeMenu);
+    });
+    // Hide menu if screen resizes back up
+    window.addEventListener('resize', function() {
+      if(window.innerWidth > 950) {
+        document.getElementById('dropdown-menu').classList.remove('open');
+      }
     });
   </script>
 </body>
