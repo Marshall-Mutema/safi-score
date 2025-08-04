@@ -2,20 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SafiScore® | Smarter Credit for Zimbabwe</title>
-  <!-- Tailwind CDN (for production, use a compiled build) -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Feather Icons CDN -->
+  <!-- Tailwind CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <!-- Feather Icons CDN, deferred for performance -->
   <script src="https://unpkg.com/feather-icons" defer></script>
+
   <style>
+    /* Navbar base styles */
     header {
-      transition: top 0.3s;
+      transition: padding 0.25s ease, background-color 0.3s ease, box-shadow 0.3s ease;
       background-color: #000;
+      padding-top: 1rem;  /* md:py-4 */
+      padding-bottom: 1rem;
     }
-    header.hide {
-      top: -100px;
+    /* Shrunk navbar */
+    header.navbar-shrink {
+      padding-top: 0.5rem !important;  /* py-2 */
+      padding-bottom: 0.5rem !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
+    /* Logo base size */
+    .navbar-logo {
+      transition: width 0.25s ease;
+      width: 128px; /* md:w-32 */
+    }
+    /* Logo shrunk */
+    header.navbar-shrink .navbar-logo {
+      width: 96px !important;  /* w-24 */
+    }
+    /* Mobile logo size override */
+    @media (max-width: 767px) {
+      header {
+        padding-top: 0.5rem !important;  /* py-2 */
+        padding-bottom: 0.5rem !important;
+      }
+      .navbar-logo {
+        width: 96px !important; /* w-24 */
+      }
+    }
+
+    /* Mobile menu styles */
     #mobile-menu {
       position: fixed;
       top: 48px;
@@ -30,20 +58,25 @@
     #mobile-menu.hidden {
       display: none;
     }
-    body.menu-open #hero-section {
-      padding-top: 108px;
+
+    /* Hero padding to avoid navbar overlap */
+    #hero-section {
+      padding-top: 80px;
       transition: padding-top 0.3s ease;
     }
+
+    /* Responsive hero padding */
     @media(min-width: 768px) {
       #hero-section {
-        padding-top: 1.5rem;
-        transition: padding-top 0.3s ease;
+        padding-top: 80px;
       }
     }
+
     html {
       scroll-behavior: smooth;
     }
-    /* Visually hidden for accessibility utilities */
+
+    /* Visually hidden for accessibility */
     .sr-only {
       position: absolute;
       width: 1px;
@@ -68,7 +101,7 @@
       left: 0;
       top: 0;
     }
-    /* Enhancing focus for nav and buttons */
+    /* Focus outlines */
     a:focus, button:focus, input:focus, textarea:focus {
       outline: 2px solid #22d3ee;
       outline-offset: 2px;
@@ -83,9 +116,9 @@
   </a>
 
   <!-- Navbar -->
-  <header class="fixed top-0 left-0 right-0 z-50 px-6 py-2 flex justify-between items-center" role="banner">
+  <header class="fixed top-0 left-0 right-0 z-50 px-6 flex justify-between items-center" role="banner">
     <a href="#hero-section" aria-label="Home">
-      <img src="assets/logo.png" alt="SafiScore company logo" class="w-24 md:w-32">
+      <img src="assets/logo.png" alt="SafiScore company logo" class="navbar-logo" />
     </a>
     <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu" type="button">
       <i data-feather="menu"></i>
@@ -102,7 +135,7 @@
     </nav>
   </header>
 
-  <!-- Mobile Menu -->
+  <!-- Mobile Nav -->
   <nav id="mobile-menu" class="md:hidden hidden text-white space-y-4" aria-label="Mobile navigation">
     <a href="#about" class="block hover:text-green-400">About</a>
     <a href="#features" class="block hover:text-green-400">Features</a>
@@ -118,7 +151,7 @@
   <main id="main-content">
 
     <!-- Hero Section -->
-    <section id="hero-section" class="bg-black text-white py-20 text-center px-4 mt-12 md:mt-16" aria-labelledby="hero-title">
+    <section id="hero-section" class="bg-black text-white py-20 text-center px-4" aria-labelledby="hero-title">
       <h1 id="hero-title" class="text-5xl font-bold mb-6">
         SafiScore<sup aria-label="Registered Trademark">®</sup> - Smarter Credit for Zimbabwe
       </h1>
@@ -134,7 +167,7 @@
           class="w-full p-3 rounded text-black"
           required
           autocomplete="email"
-        >
+        />
         <button class="bg-green-700 hover:bg-green-800 text-white mt-4 px-6 py-3 rounded font-semibold w-full" type="submit">
           Request a Demo
         </button>
@@ -146,7 +179,7 @@
       <div class="max-w-5xl mx-auto text-center">
         <h2 id="about-title" class="text-3xl font-bold mb-6">About SafiScore</h2>
         <p class="text-lg leading-relaxed max-w-3xl mx-auto text-white/90">
-          SafiScore® is an alternative credit scoring and data analytics platform for Zimbabwe, leveraging mobile and web behavioral metadata. Our AI-driven technology helps financial institutions reduce defaults, expand approvals, and fight fraud—while including the underbanked.
+          SafiScore is an alternative credit scoring and data analytics platform for Zimbabwe, leveraging mobile and web behavioral metadata. Our AI-driven technology helps financial institutions reduce defaults, expand approvals, and fight fraud—while including the underbanked.
         </p>
       </div>
     </section>
@@ -169,7 +202,7 @@
           <div class="flex flex-col items-center">
             <i data-feather="bar-chart-2" class="text-green-400 w-10 h-10 mb-4" aria-hidden="true"></i>
             <h3 class="font-semibold text-xl mb-2">Score</h3>
-            <p>Receive your SafiScore® and tailored credit insights instantly.</p>
+            <p>Receive SafiScore and tailored credit insights instantly.</p>
           </div>
         </div>
       </div>
@@ -218,7 +251,7 @@
       <div class="space-y-20">
         <!-- Block 1 -->
         <div class="md:flex md:items-center gap-10">
-          <img src="assets/farmers.png" alt="African Woman Farmer smiling in a field" class="section-image md:w-1/3 rounded-xl shadow-lg">
+          <img src="assets/farmers.png" alt="African Woman Farmer smiling in a field" class="section-image md:w-1/3 rounded-xl shadow-lg" />
           <div>
             <h3 class="text-xl font-semibold mb-3">1. Traditional Credit Gaps</h3>
             <p class="text-white/90 leading-relaxed">
@@ -231,9 +264,10 @@
             </a>
           </div>
         </div>
+
         <!-- Block 2 -->
         <div class="md:flex md:flex-row-reverse md:items-center gap-10">
-          <img src="assets/phone.png" alt="African Market Vendor uses a smartphone" class="section-image md:w-1/3 rounded-xl shadow-lg">
+          <img src="assets/phone.png" alt="African Market Vendor uses a smartphone" class="section-image md:w-1/3 rounded-xl shadow-lg" />
           <div>
             <h3 class="text-xl font-semibold mb-3">2. Mobile-Driven Financial Behavior</h3>
             <p class="text-white/90 leading-relaxed">
@@ -245,9 +279,10 @@
             </a>
           </div>
         </div>
+
         <!-- Block 3 -->
         <div class="md:flex md:items-center gap-10">
-          <img src="assets/wib.png" alt="Rural African Entrepreneur using a tablet" class="section-image md:w-1/3 rounded-xl shadow-lg">
+          <img src="assets/wib.png" alt="Rural African Entrepreneur using a tablet" class="section-image md:w-1/3 rounded-xl shadow-lg" />
           <div>
             <h3 class="text-xl font-semibold mb-3">3. Trust Without Banks</h3>
             <p class="text-white/90 leading-relaxed">
@@ -300,9 +335,9 @@
         <p class="mb-6 text-white/90">We’d love to hear from you. Fill out the form and we’ll be in touch.</p>
         <form class="space-y-4 text-left" onsubmit="return false;" aria-label="Send us a message">
           <label for="contact-name" class="sr-only">Your Name</label>
-          <input type="text" id="contact-name" placeholder="Your Name" class="w-full p-3 rounded text-black" required autocomplete="name">
+          <input type="text" id="contact-name" placeholder="Your Name" class="w-full p-3 rounded text-black" required autocomplete="name" />
           <label for="contact-email" class="sr-only">Your Email</label>
-          <input type="email" id="contact-email" placeholder="Your Email" class="w-full p-3 rounded text-black" required autocomplete="email">
+          <input type="email" id="contact-email" placeholder="Your Email" class="w-full p-3 rounded text-black" required autocomplete="email" />
           <label for="contact-message" class="sr-only">Your Message</label>
           <textarea id="contact-message" placeholder="Message" class="w-full p-3 rounded text-black h-32" required></textarea>
           <button class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded font-semibold w-full" type="submit">
@@ -319,6 +354,7 @@
         <p>Integration guides and API references coming soon.</p>
       </div>
     </section>
+
   </main>
 
   <!-- Footer -->
@@ -329,14 +365,12 @@
 
   <!-- Scripts -->
   <script>
-    // Enable feather icons on DOMContentLoaded for "defer"
     document.addEventListener('DOMContentLoaded', () => {
       if (window.feather) feather.replace();
 
       const menuToggle = document.getElementById('menu-toggle');
       const mobileMenu = document.getElementById('mobile-menu');
       const header = document.querySelector('header');
-      let lastScrollY = window.scrollY;
 
       // Mobile menu toggle
       menuToggle.addEventListener('click', () => {
@@ -344,7 +378,7 @@
         document.body.classList.toggle('menu-open');
       });
 
-      // Mobile menu links close menu on click
+      // Hide mobile menu when a link is clicked
       mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           mobileMenu.classList.add('hidden');
@@ -352,24 +386,18 @@
         });
       });
 
-      // Navbar hide on scroll with threshold for stability
-      let ticking = false;
+      // Shrink navbar on scroll for desktop only
       window.addEventListener('scroll', () => {
-        if (!ticking) {
-          window.requestAnimationFrame(() => {
-            if (window.scrollY > lastScrollY + 12) {
-              header.classList.add('hide');
-            } else if (window.scrollY < lastScrollY - 12) {
-              header.classList.remove('hide');
-            }
-            lastScrollY = window.scrollY;
-            ticking = false;
-          });
-          ticking = true;
+        if (window.matchMedia('(min-width: 768px)').matches) {
+          if (window.scrollY > 10) {
+            header.classList.add('navbar-shrink');
+          } else {
+            header.classList.remove('navbar-shrink');
+          }
         }
       });
 
-      // ESC key closes mobile menu
+      // ESC closes mobile menu
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
           mobileMenu.classList.add('hidden');
