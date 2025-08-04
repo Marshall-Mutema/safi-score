@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SafiScore® | Smarter Credit for Zimbabwe</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-  <script src="https://unpkg.com/feather-icons"></script>
+  <!-- Tailwind CDN (for production, use a compiled build) -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Feather Icons CDN -->
+  <script src="https://unpkg.com/feather-icons" defer></script>
   <style>
-    /* Navbar hide on scroll */
     header {
       transition: top 0.3s;
       background-color: #000;
@@ -15,8 +16,6 @@
     header.hide {
       top: -100px;
     }
-
-    /* Mobile menu fix */
     #mobile-menu {
       position: fixed;
       top: 48px;
@@ -31,33 +30,67 @@
     #mobile-menu.hidden {
       display: none;
     }
-
     body.menu-open #hero-section {
       padding-top: 108px;
       transition: padding-top 0.3s ease;
     }
-
     @media(min-width: 768px) {
       #hero-section {
         padding-top: 1.5rem;
         transition: padding-top 0.3s ease;
       }
     }
-
     html {
       scroll-behavior: smooth;
+    }
+    /* Visually hidden for accessibility utilities */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+    .focus\:not-sr-only:focus {
+      position: static !important;
+      width: auto !important;
+      height: auto !important;
+      margin: 0 !important;
+      overflow: visible !important;
+      clip: auto !important;
+      border: none !important;
+      background: #047857 !important;
+      color: #fff !important;
+      z-index: 100;
+      left: 0;
+      top: 0;
+    }
+    /* Enhancing focus for nav and buttons */
+    a:focus, button:focus, input:focus, textarea:focus {
+      outline: 2px solid #22d3ee;
+      outline-offset: 2px;
     }
   </style>
 </head>
 <body class="bg-black text-white font-sans">
 
+  <!-- Skip link for accessibility -->
+  <a href="#main-content" class="sr-only focus:not-sr-only absolute left-0 top-0 px-4 py-2 z-50">
+    Skip to main content
+  </a>
+
   <!-- Navbar -->
-  <header class="fixed top-0 left-0 right-0 z-50 px-6 py-2 flex justify-between items-center">
-    <img src="assets/logo.png" alt="SafiScore® Logo" class="w-24 md:w-32" />
-    <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
+  <header class="fixed top-0 left-0 right-0 z-50 px-6 py-2 flex justify-between items-center" role="banner">
+    <a href="#hero-section" aria-label="Home">
+      <img src="assets/logo.png" alt="SafiScore company logo" class="w-24 md:w-32">
+    </a>
+    <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu" type="button">
       <i data-feather="menu"></i>
     </button>
-    <nav id="nav-menu" class="hidden md:flex space-x-6 text-white" role="navigation" aria-label="Primary Navigation">
+    <nav id="nav-menu" class="hidden md:flex space-x-6 text-white" aria-label="Main site navigation">
       <a href="#about" class="hover:text-green-400 focus:text-green-400">About</a>
       <a href="#features" class="hover:text-green-400 focus:text-green-400">Features</a>
       <a href="#how" class="hover:text-green-400 focus:text-green-400">How it Works</a>
@@ -69,8 +102,8 @@
     </nav>
   </header>
 
-  <!-- Mobile Nav -->
-  <div id="mobile-menu" class="md:hidden hidden text-white space-y-4">
+  <!-- Mobile Menu -->
+  <nav id="mobile-menu" class="md:hidden hidden text-white space-y-4" aria-label="Mobile navigation">
     <a href="#about" class="block hover:text-green-400">About</a>
     <a href="#features" class="block hover:text-green-400">Features</a>
     <a href="#how" class="block hover:text-green-400">How it Works</a>
@@ -79,239 +112,270 @@
     <a href="#blog" class="block hover:text-green-400">Blog</a>
     <a href="#contact" class="block hover:text-green-400">Contact</a>
     <a href="#api" class="block bg-green-700 text-white px-4 py-2 rounded font-semibold text-center">API Docs</a>
-  </div>
+  </nav>
 
-  <!-- Hero Section -->
-  <section id="hero-section" class="bg-black text-white py-20 text-center px-4 mt-12 md:mt-16">
-    <h1 class="text-5xl font-bold mb-6">SafiScore<sup>®</sup> - Smarter Credit for Zimbabwe</h1>
-    <p class="text-xl mb-8 max-w-2xl mx-auto text-white/80">
-      Unlocking inclusive financial services through behavioral data, AI, and mobile metadata. Built for the underserved.
-    </p>
-    <form class="max-w-md mx-auto" onsubmit="return false;">
-      <input type="email" placeholder="Enter your email" class="w-full p-3 rounded text-black" required />
-      <button class="bg-green-700 hover:bg-green-800 text-white mt-4 px-6 py-3 rounded font-semibold w-full">
-        Request a Demo
-      </button>
-    </form>
-  </section>
+  <!-- Main Content -->
+  <main id="main-content">
 
-  <!-- About -->
-  <section id="about" class="bg-green-900 py-20 px-6 text-white">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-6">About SafiScore</h2>
-      <p class="text-lg leading-relaxed max-w-3xl mx-auto text-white/90">
-        SafiScore is an alternative credit scoring and data analytics platform for Zimbabwe, leveraging mobile and web behavioral metadata. Our AI-driven technology helps financial institutions reduce defaults, expand approvals, and fight fraud—while including the underbanked.
+    <!-- Hero Section -->
+    <section id="hero-section" class="bg-black text-white py-20 text-center px-4 mt-12 md:mt-16" aria-labelledby="hero-title">
+      <h1 id="hero-title" class="text-5xl font-bold mb-6">
+        SafiScore<sup aria-label="Registered Trademark">®</sup> - Smarter Credit for Zimbabwe
+      </h1>
+      <p class="text-xl mb-8 max-w-2xl mx-auto text-white/80">
+        Unlocking inclusive financial services through behavioral data, AI, and mobile metadata. Built for the underserved.
       </p>
-    </div>
-  </section>
-
-  <!-- How It Works -->
-  <section id="how" class="bg-[#0d1117] py-20 px-6 text-white">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-12">How It Works</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-        <div class="flex flex-col items-center">
-          <i data-feather="link" class="text-green-400 w-10 h-10 mb-4"></i>
-          <h3 class="font-semibold text-xl mb-2">Connect</h3>
-          <p>Sync smartphone and web data for behavior analysis.</p>
-        </div>
-        <div class="flex flex-col items-center">
-          <i data-feather="activity" class="text-green-400 w-10 h-10 mb-4"></i>
-          <h3 class="font-semibold text-xl mb-2">Analyze</h3>
-          <p>AI analyzes psychometric, social, and mobile metadata.</p>
-        </div>
-        <div class="flex flex-col items-center">
-          <i data-feather="bar-chart-2" class="text-green-400 w-10 h-10 mb-4"></i>
-          <h3 class="font-semibold text-xl mb-2">Score</h3>
-          <p>Receive SafiScore and tailored credit insights instantly.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section id="features" class="bg-[#161b22] py-20 px-6 text-white">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-12">Platform Features</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-        <ul class="space-y-4">
-          <li class="flex items-start">
-            <i data-feather="check-circle" class="text-green-400 mr-3"></i>
-            Alternative credit scoring engine
-          </li>
-          <li class="flex items-start">
-            <i data-feather="shield" class="text-green-400 mr-3"></i>
-            Built-in fraud detection
-          </li>
-          <li class="flex items-start">
-            <i data-feather="user-check" class="text-green-400 mr-3"></i>
-            Psychometric and behavioral models
-          </li>
-        </ul>
-        <ul class="space-y-4">
-          <li class="flex items-start">
-            <i data-feather="cpu" class="text-green-400 mr-3"></i>
-            Secure mobile data ingestion
-          </li>
-          <li class="flex items-start">
-            <i data-feather="git-merge" class="text-green-400 mr-3"></i>
-            Open APIs for lenders and fintechs
-          </li>
-          <li class="flex items-start">
-            <i data-feather="sliders" class="text-green-400 mr-3"></i>
-            Custom risk and approval models
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-  
-<!-- Why Alternative Credit Scoring Works in Africa -->
-<section id="why-alternative" class="bg-[#0d1117] py-20 px-6 text-white max-w-6xl mx-auto">
-  <h2 class="text-3xl font-bold mb-12 text-center" data-aos="fade-up">Why Alternative Credit Scoring Works in Africa</h2>
-  
-  <div class="space-y-20">
-
-    <!-- Block 1 -->
-    <div class="md:flex md:items-center gap-10" data-aos="fade-up" data-aos-delay="100">
-      <img src="assets/farmers.png" alt="African Woman Farmer" class="section-image md:w-1/3 rounded-xl shadow-lg" />
-      <div>
-        <h3 class="text-xl font-semibold mb-3">1. Traditional Credit Gaps</h3>
-        <p class="text-white/90 leading-relaxed">
-          Over 60% of adults in Sub-Saharan Africa are unbanked or lack formal credit history, according to World Bank data.
-          Women, smallholder farmers, and informal traders are often excluded from traditional financial systems.
-          Alternative credit scoring opens doors to fairer and more inclusive access to capital.
-        </p>
-        <a href="https://www.worldbank.org/en/topic/financialinclusion" target="_blank" class="mt-3 inline-block text-green-400 hover:text-green-300 text-sm font-medium">
-          Read More →
-        </a>
-      </div>
-    </div>
-
-    <!-- Block 2 -->
-    <div class="md:flex md:flex-row-reverse md:items-center gap-10" data-aos="fade-up" data-aos-delay="200">
-      <img src="assets/phone.png" alt="African Market Vendor" class="section-image md:w-1/3 rounded-xl shadow-lg" />
-      <div>
-        <h3 class="text-xl font-semibold mb-3">2. Mobile-Driven Financial Behavior</h3>
-        <p class="text-white/90 leading-relaxed">
-          With mobile penetration exceeding 90% in some regions, behavioral data like airtime top-ups, mobile money transfers, and WhatsApp usage offer deeper insights into financial habits.
-          This data builds reliable credit profiles without requiring bank statements.
-        </p>
-        <a href="https://datatopics.worldbank.org/financialinclusion/" target="_blank" class="mt-3 inline-block text-green-400 hover:text-green-300 text-sm font-medium">
-          Read More →
-        </a>
-      </div>
-    </div>
-
-    <!-- Block 3 -->
-    <div class="md:flex md:items-center gap-10" data-aos="fade-up" data-aos-delay="300">
-      <img src="assets/wib.png" alt="Rural African Entrepreneur" class="section-image md:w-1/3 rounded-xl shadow-lg" />
-      <div>
-        <h3 class="text-xl font-semibold mb-3">3. Trust Without Banks</h3>
-        <p class="text-white/90 leading-relaxed">
-          Alternative scoring empowers micro-lenders and fintechs to extend credit based on trust signals beyond banks.
-          Community savings behavior, peer-to-peer payments, and smartphone activity can all validate creditworthiness—especially in rural and underserved regions.
-        </p>
-        <a href="https://www.worldbank.org/en/news/feature/2022/09/30/the-promise-of-fintech-in-emerging-markets" target="_blank" class="mt-3 inline-block text-green-400 hover:text-green-300 text-sm font-medium">
-          Read More →
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>
-  <!-- Resources -->
-  <section id="resources" class="bg-black py-20 px-6 text-white text-center">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-3xl font-bold mb-6">Resources</h2>
-      <p class="mb-4 text-white/90">Explore demos, testimonials, and our latest insights.</p>
-      <a href="#" class="text-green-400 underline">Coming soon →</a>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section id="pricing" class="bg-[#0d1117] py-20 px-6 text-white text-center">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold mb-6">Pricing</h2>
-      <p class="mb-6 text-white/80">
-        Simple plans for growing lenders and partners. Custom enterprise pricing available on request.
-      </p>
-      <div class="bg-green-100 rounded p-6 text-black">
-        <p class="text-2xl font-bold text-green-900">Free & API-based models</p>
-        <p class="text-green-800 mt-2">Pay as you scale with credit scoring API usage.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog -->
-  <section id="blog" class="bg-black py-20 px-6 text-white text-center">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold mb-6">Blog & Thought Leadership</h2>
-      <p>Coming soon: case studies, local insights, and innovation stories.</p>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="bg-green-900 py-20 px-6 text-white text-center">
-    <div class="max-w-lg mx-auto">
-      <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
-      <p class="mb-6 text-white/90">We’d love to hear from you. Fill out the form and we’ll be in touch.</p>
-      <form class="space-y-4 text-left" onsubmit="return false;">
-        <input type="text" placeholder="Your Name" class="w-full p-3 rounded text-black" required />
-        <input type="email" placeholder="Your Email" class="w-full p-3 rounded text-black" required />
-        <textarea placeholder="Message" class="w-full p-3 rounded text-black h-32" required></textarea>
-        <button class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded font-semibold w-full">
-          Send Message
+      <form class="max-w-md mx-auto" onsubmit="return false;" aria-label="Request a demo">
+        <label for="demo-email" class="sr-only">Your email</label>
+        <input
+          type="email"
+          id="demo-email"
+          placeholder="Enter your email"
+          class="w-full p-3 rounded text-black"
+          required
+          autocomplete="email"
+        >
+        <button class="bg-green-700 hover:bg-green-800 text-white mt-4 px-6 py-3 rounded font-semibold w-full" type="submit">
+          Request a Demo
         </button>
       </form>
-    </div>
-  </section>
+    </section>
 
-  <!-- API Docs -->
-  <section id="api" class="bg-black py-20 px-6 text-white text-center">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold mb-6">API Documentation</h2>
-      <p>Integration guides and API references coming soon.</p>
-    </div>
-  </section>
+    <!-- About -->
+    <section id="about" class="bg-green-900 py-20 px-6 text-white" aria-labelledby="about-title">
+      <div class="max-w-5xl mx-auto text-center">
+        <h2 id="about-title" class="text-3xl font-bold mb-6">About SafiScore</h2>
+        <p class="text-lg leading-relaxed max-w-3xl mx-auto text-white/90">
+          SafiScore is an alternative credit scoring and data analytics platform for Zimbabwe, leveraging mobile and web behavioral metadata. Our AI-driven technology helps financial institutions reduce defaults, expand approvals, and fight fraud—while including the underbanked.
+        </p>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how" class="bg-[#0d1117] py-20 px-6 text-white" aria-labelledby="how-title">
+      <div class="max-w-6xl mx-auto text-center">
+        <h2 id="how-title" class="text-3xl font-bold mb-12">How It Works</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+          <div class="flex flex-col items-center">
+            <i data-feather="link" class="text-green-400 w-10 h-10 mb-4" aria-hidden="true"></i>
+            <h3 class="font-semibold text-xl mb-2">Connect</h3>
+            <p>Sync smartphone and web data for behavior analysis.</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <i data-feather="activity" class="text-green-400 w-10 h-10 mb-4" aria-hidden="true"></i>
+            <h3 class="font-semibold text-xl mb-2">Analyze</h3>
+            <p>AI analyzes psychometric, social, and mobile metadata.</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <i data-feather="bar-chart-2" class="text-green-400 w-10 h-10 mb-4" aria-hidden="true"></i>
+            <h3 class="font-semibold text-xl mb-2">Score</h3>
+            <p>Receive SafiScore and tailored credit insights instantly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="bg-[#161b22] py-20 px-6 text-white" aria-labelledby="features-title">
+      <div class="max-w-6xl mx-auto text-center">
+        <h2 id="features-title" class="text-3xl font-bold mb-12">Platform Features</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <i data-feather="check-circle" class="text-green-400 mr-3" aria-hidden="true"></i>
+              <span>Alternative credit scoring engine</span>
+            </li>
+            <li class="flex items-start">
+              <i data-feather="shield" class="text-green-400 mr-3" aria-hidden="true"></i>
+              <span>Built-in fraud detection</span>
+            </li>
+            <li class="flex items-start">
+              <i data-feather="user-check" class="text-green-400 mr-3" aria-hidden="true"></i>
+              <span>Psychometric and behavioral models</span>
+            </li>
+          </ul>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <i data-feather="cpu" class="text-green-400 mr-3" aria-hidden="true"></i>
+              <span>Secure mobile data ingestion</span>
+            </li>
+            <li class="flex items-start">
+              <i data-feather="git-merge" class="text-green-400 mr-3" aria-hidden="true"></i>
+              <span>Open APIs for lenders and fintechs</span>
+            </li>
+            <li class="flex items-start">
+              <i data-feather="sliders" class="text-green-400 mr-3" aria-hidden="true"></i>
+              <span>Custom risk and approval models</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Alternative Credit Scoring Works in Africa -->
+    <section id="why-alternative" class="bg-[#0d1117] py-20 px-6 text-white max-w-6xl mx-auto" aria-labelledby="why-title">
+      <h2 id="why-title" class="text-3xl font-bold mb-12 text-center">Why Alternative Credit Scoring Works in Africa</h2>
+      <div class="space-y-20">
+        <!-- Block 1 -->
+        <div class="md:flex md:items-center gap-10">
+          <img src="assets/farmers.png" alt="African Woman Farmer smiling in a field" class="section-image md:w-1/3 rounded-xl shadow-lg">
+          <div>
+            <h3 class="text-xl font-semibold mb-3">1. Traditional Credit Gaps</h3>
+            <p class="text-white/90 leading-relaxed">
+              Over 60% of adults in Sub-Saharan Africa are unbanked or lack formal credit history, according to World Bank data.
+              Women, smallholder farmers, and informal traders are often excluded from traditional financial systems.
+              Alternative credit scoring opens doors to fairer and more inclusive access to capital.
+            </p>
+            <a href="#" aria-label="More on traditional credit gaps" class="mt-3 inline-block text-green-400 hover:text-green-300 text-sm font-medium pointer-events-none opacity-70" tabindex="-1">
+              Read More &rarr; <span class="sr-only">(Coming soon)</span>
+            </a>
+          </div>
+        </div>
+        <!-- Block 2 -->
+        <div class="md:flex md:flex-row-reverse md:items-center gap-10">
+          <img src="assets/phone.png" alt="African Market Vendor uses a smartphone" class="section-image md:w-1/3 rounded-xl shadow-lg">
+          <div>
+            <h3 class="text-xl font-semibold mb-3">2. Mobile-Driven Financial Behavior</h3>
+            <p class="text-white/90 leading-relaxed">
+              With mobile penetration exceeding 90% in some regions, behavioral data like airtime top-ups, mobile money transfers, and WhatsApp usage offer deeper insights into financial habits.
+              This data builds reliable credit profiles without requiring bank statements.
+            </p>
+            <a href="#" aria-label="More on mobile-driven financial behavior" class="mt-3 inline-block text-green-400 hover:text-green-300 text-sm font-medium pointer-events-none opacity-70" tabindex="-1">
+              Read More &rarr; <span class="sr-only">(Coming soon)</span>
+            </a>
+          </div>
+        </div>
+        <!-- Block 3 -->
+        <div class="md:flex md:items-center gap-10">
+          <img src="assets/wib.png" alt="Rural African Entrepreneur using a tablet" class="section-image md:w-1/3 rounded-xl shadow-lg">
+          <div>
+            <h3 class="text-xl font-semibold mb-3">3. Trust Without Banks</h3>
+            <p class="text-white/90 leading-relaxed">
+              Alternative scoring empowers micro-lenders and fintechs to extend credit based on trust signals beyond banks.
+              Community savings behavior, peer-to-peer payments, and smartphone activity can all validate creditworthiness—especially in rural and underserved regions.
+            </p>
+            <a href="#" aria-label="More on trust without banks" class="mt-3 inline-block text-green-400 hover:text-green-300 text-sm font-medium pointer-events-none opacity-70" tabindex="-1">
+              Read More &rarr; <span class="sr-only">(Coming soon)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources" class="bg-black py-20 px-6 text-white text-center" aria-labelledby="resources-title">
+      <div class="max-w-5xl mx-auto">
+        <h2 id="resources-title" class="text-3xl font-bold mb-6">Resources</h2>
+        <p class="mb-4 text-white/90">Explore demos, testimonials, and our latest insights.</p>
+        <span class="text-green-400 underline opacity-60">Coming soon &rarr;</span>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="bg-[#0d1117] py-20 px-6 text-white text-center" aria-labelledby="pricing-title">
+      <div class="max-w-4xl mx-auto">
+        <h2 id="pricing-title" class="text-3xl font-bold mb-6">Pricing</h2>
+        <p class="mb-6 text-white/80">
+          Simple plans for growing lenders and partners. Custom enterprise pricing available on request.
+        </p>
+        <div class="bg-green-100 rounded p-6 text-black">
+          <p class="text-2xl font-bold text-green-900">Free & API-based models</p>
+          <p class="text-green-800 mt-2">Pay as you scale with credit scoring API usage.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog" class="bg-black py-20 px-6 text-white text-center" aria-labelledby="blog-title">
+      <div class="max-w-4xl mx-auto">
+        <h2 id="blog-title" class="text-3xl font-bold mb-6">Blog & Thought Leadership</h2>
+        <p>Coming soon: case studies, local insights, and innovation stories.</p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="bg-green-900 py-20 px-6 text-white text-center" aria-labelledby="contact-title">
+      <div class="max-w-lg mx-auto">
+        <h2 id="contact-title" class="text-3xl font-bold mb-4">Contact Us</h2>
+        <p class="mb-6 text-white/90">We’d love to hear from you. Fill out the form and we’ll be in touch.</p>
+        <form class="space-y-4 text-left" onsubmit="return false;" aria-label="Send us a message">
+          <label for="contact-name" class="sr-only">Your Name</label>
+          <input type="text" id="contact-name" placeholder="Your Name" class="w-full p-3 rounded text-black" required autocomplete="name">
+          <label for="contact-email" class="sr-only">Your Email</label>
+          <input type="email" id="contact-email" placeholder="Your Email" class="w-full p-3 rounded text-black" required autocomplete="email">
+          <label for="contact-message" class="sr-only">Your Message</label>
+          <textarea id="contact-message" placeholder="Message" class="w-full p-3 rounded text-black h-32" required></textarea>
+          <button class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded font-semibold w-full" type="submit">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- API Docs -->
+    <section id="api" class="bg-black py-20 px-6 text-white text-center" aria-labelledby="api-title">
+      <div class="max-w-4xl mx-auto">
+        <h2 id="api-title" class="text-3xl font-bold mb-6">API Documentation</h2>
+        <p>Integration guides and API references coming soon.</p>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <footer class="bg-black text-white text-sm text-center py-6">
-    <p>&copy; 2025 SafiScore<sup>®</sup>. All rights reserved.</p>
-    <p>Contact: info@safiscore.co.zw | Harare, Zimbabwe</p>
+  <footer class="bg-black text-white text-sm text-center py-6" role="contentinfo">
+    <p>&copy; 2025 SafiScore<sup aria-label="Registered Trademark">®</sup>. All rights reserved.</p>
+    <p>Contact: <a href="mailto:info@safiscore.co.zw" class="underline hover:text-green-400">info@safiscore.co.zw</a> | Harare, Zimbabwe</p>
   </footer>
 
   <!-- Scripts -->
   <script>
-    feather.replace();
+    // Enable feather icons on DOMContentLoaded for "defer"
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.feather) feather.replace();
 
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const header = document.querySelector('header');
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const header = document.querySelector('header');
+      let lastScrollY = window.scrollY;
 
-    let lastScrollY = window.scrollY;
-
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-      document.body.classList.toggle('menu-open');
-    });
-
-    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-    mobileMenuLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        document.body.classList.remove('menu-open');
+      // Mobile menu toggle
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        document.body.classList.toggle('menu-open');
       });
-    });
 
-    // Navbar hide on scroll
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > lastScrollY) {
-        header.classList.add('hide');
-      } else {
-        header.classList.remove('hide');
-      }
-      lastScrollY = window.scrollY;
+      // Mobile menu links close menu on click
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          document.body.classList.remove('menu-open');
+        });
+      });
+
+      // Navbar hide on scroll with threshold for stability
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            if (window.scrollY > lastScrollY + 12) {
+              header.classList.add('hide');
+            } else if (window.scrollY < lastScrollY - 12) {
+              header.classList.remove('hide');
+            }
+            lastScrollY = window.scrollY;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+
+      // ESC key closes mobile menu
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          document.body.classList.remove('menu-open');
+        }
+      });
     });
   </script>
 </body>
